@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saniya: What the Data Says</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:oklch(0.97 0.01 74);--ink:oklch(0.23 0.03 32);--ink-soft:oklch(0.37 0.03 30);--line:oklch(0.81 0.03 58);--accent:oklch(0.61 0.2 27);--olive:oklch(0.56 0.09 124);--gold:oklch(0.77 0.13 84);--display:"Fraunces","Georgia",serif;--body:"Instrument Sans","Helvetica Neue",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:light}
+body{font-family:var(--body);color:var(--ink);background:linear-gradient(180deg,#f7f0e6 0%,#f2e7d7 100%);min-height:100vh;line-height:1.65}
+.page{max-width:800px;margin:0 auto;padding:48px 32px 100px}
+h1{font-family:var(--display);font-size:28px;font-weight:700;margin:0 0 6px;letter-spacing:-0.5px}
+h2{font-family:var(--display);font-size:20px;font-weight:600;margin:48px 0 16px;color:var(--accent);letter-spacing:-0.3px}
+h3{font-size:14px;font-weight:600;margin:24px 0 8px;text-transform:uppercase;letter-spacing:1px;color:var(--ink-soft)}
+p{margin:8px 0;font-size:14px;color:var(--ink-soft)}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-soft);font-weight:600}
+.subtitle{font-size:15px;color:var(--ink-soft);margin-bottom:32px}
+.divider{height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin:32px 0;opacity:0.3}
+.verdict{font-family:var(--display);font-size:22px;font-weight:600;text-align:center;padding:32px 24px;margin:32px 0;border:1px solid var(--line);border-radius:12px;background:white;line-height:1.5;box-shadow:0 4px 20px rgba(86,39,20,0.06)}
+.verdict em{color:var(--accent);font-style:normal}
+/* Charts */
+.chart{margin:20px 0;background:white;border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:0 2px 12px rgba(86,39,20,0.04)}
+.chart-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:16px}
+.chart-subtitle{font-size:11px;color:var(--ink-soft);margin-top:-12px;margin-bottom:16px}
+.bar-row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar-label{font-size:12px;color:var(--ink-soft);min-width:56px;text-align:right;font-weight:500}
+.bar-track{flex:1;height:24px;background:oklch(0.94 0.01 74);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;transition:width 0.6s ease}
+.bar-fill-accent{background:var(--accent)}
+.bar-fill-olive{background:var(--olive)}
+.bar-fill-gold{background:var(--gold)}
+.bar-fill-muted{background:oklch(0.75 0.02 74)}
+.bar-value{font-size:11px;font-weight:600;min-width:50px;color:var(--ink)}
+.bar-annotation{font-size:10px;color:var(--ink-soft);position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+/* Hour chart */
+.hour-chart{display:flex;align-items:flex-end;gap:2px;height:100px;margin:16px 0}
+.hour-bar{flex:1;background:var(--accent);border-radius:3px 3px 0 0;min-width:4px;opacity:0.7;position:relative}
+.hour-bar.peak{opacity:1}
+.hour-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-soft);margin-top:4px}
+/* Day chart */
+.day-chart{display:flex;gap:6px;align-items:flex-end;height:80px;margin:16px 0}
+.day-col{flex:1;text-align:center}
+.day-bar{background:var(--olive);border-radius:4px 4px 0 0;margin:0 auto;width:100%}
+.day-label{font-size:11px;color:var(--ink-soft);margin-top:6px;font-weight:500}
+/* Topic cards */
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.topic-card{background:white;border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(86,39,20,0.03)}
+.topic-name{font-size:13px;font-weight:600;color:var(--ink)}
+.topic-num{font-size:24px;font-weight:700;color:var(--accent);margin:4px 0}
+.topic-detail{font-size:11px;color:var(--ink-soft)}
+.topic-bar{height:6px;border-radius:3px;margin-top:8px;background:oklch(0.92 0.01 74)}
+.topic-bar-fill{height:100%;border-radius:3px}
+/* Insight box */
+.insight{background:white;border-left:3px solid var(--accent);padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:13px;color:var(--ink);box-shadow:0 2px 8px rgba(86,39,20,0.04)}
+.insight strong{color:var(--accent)}
+/* Intent list */
+.intent-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid oklch(0.92 0.01 74)}
+.intent-label{font-size:12px;color:var(--ink);flex:1}
+.intent-bar{width:200px;height:8px;background:oklch(0.92 0.01 74);border-radius:4px;overflow:hidden}
+.intent-fill{height:100%;border-radius:4px;background:var(--olive)}
+.intent-pct{font-size:11px;color:var(--ink-soft);min-width:36px;text-align:right}
+/* Story cards */
+.story{background:white;border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0;font-size:13px;color:var(--ink-soft);box-shadow:0 2px 8px rgba(86,39,20,0.03)}
+.story-meta{display:flex;gap:12px;margin-top:8px;font-size:11px}
+.story-tag{background:oklch(0.92 0.04 27);color:var(--accent);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:600}
+/* Footer */
+.footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-soft);text-align:center}
+@media(max-width:600px){.page{padding:24px 16px}.topic-grid{grid-template-columns:1fr}.intent-bar{width:120px}}
+@media print{body{background:white}.chart,.topic-card,.story,.insight{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="kicker">Zonko Applied AI Lab &middot; Saniya Companion Data</p>
+<h1>What 16,288 Conversations Told Us</h1>
+<p class="subtitle">Jan 31 &ndash; Mar 19, 2026 &middot; 212,885 messages &middot; 3,152 Gemini analyses</p>
+<div class="divider"></div>
+
+<!-- THE VERDICT -->
+<div class="verdict">
+The conversation engine works.<br><em>The opening doesn&rsquo;t.</em>
+</div>
+
+<!-- PAGE 1: THE FUNNEL -->
+<h2>The Funnel: Where Users Go</h2>
+
+<div class="chart">
+<div class="chart-title">Conversation depth distribution</div>
+<div class="chart-subtitle">Each bar = a bucket. Most users never reply. The ones who do, often go very deep.</div>
+
+<div class="bar-row"><span class="bar-label">1 msg</span><div class="bar-track"><div class="bar-fill bar-fill-muted" style="width:100%"><span class="bar-annotation" style="color:white">13,700 &middot; 80%</span></div></div></div>
+<div class="bar-row"><span class="bar-label">2-5</span><div class="bar-track"><div class="bar-fill bar-fill-muted" style="width:6.8%"></div></div><span class="bar-value">938</span></div>
+<div class="bar-row"><span class="bar-label">6-10</span><div class="bar-track"><div class="bar-fill bar-fill-muted" style="width:2.9%"></div></div><span class="bar-value">401</span></div>
+<div class="bar-row"><span class="bar-label">11-25</span><div class="bar-track"><div class="bar-fill bar-fill-gold" style="width:4.5%"></div></div><span class="bar-value">611</span></div>
+<div class="bar-row"><span class="bar-label">26-50</span><div class="bar-track"><div class="bar-fill bar-fill-olive" style="width:3.5%"></div></div><span class="bar-value">478</span></div>
+<div class="bar-row"><span class="bar-label">51-100</span><div class="bar-track"><div class="bar-fill bar-fill-olive" style="width:5.7%"></div></div><span class="bar-value">780</span></div>
+<div class="bar-row"><span class="bar-label">101-200</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:0.8%"></div></div><span class="bar-value">105</span></div>
+<div class="bar-row"><span class="bar-label">201-500</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:0.5%"></div></div><span class="bar-value">65</span></div>
+<div class="bar-row"><span class="bar-label">500+</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:0.4%"></div></div><span class="bar-value">54 &middot; 8 avg days</span></div>
+</div>
+
+<div class="insight">
+<strong>The shape is bimodal, not normal.</strong> 80% never reply. Then a long tail of deeply engaged users. There is no "average user" &mdash; there are people who bounce and people who stay for hours. The product question is: how do you move people from the left wall to the right tail?
+</div>
+
+<!-- PAGE 2: THE USE CASES -->
+<h2>What Wins: Topic Buckets</h2>
+<p>Each analyzed conversation is tagged with a primary use case. Here&rsquo;s what the best users are doing.</p>
+
+<div class="topic-grid">
+<div class="topic-card">
+<div class="topic-name">Emotional Companion</div>
+<div class="topic-num">44%</div>
+<div class="topic-detail">multi-day return rate &middot; 82% go deep</div>
+<div class="topic-bar"><div class="topic-bar-fill" style="width:82%;background:var(--olive)"></div></div>
+<p style="font-size:11px;margin-top:6px;color:var(--ink-soft)">Users who come for emotional connection come back. Highest retention of any category.</p>
+</div>
+<div class="topic-card">
+<div class="topic-name">Relationship Advice</div>
+<div class="topic-num">97%</div>
+<div class="topic-detail">go deep &middot; avg 419 msgs &middot; 34% multi-day</div>
+<div class="topic-bar"><div class="topic-bar-fill" style="width:97%;background:var(--accent)"></div></div>
+<p style="font-size:11px;margin-top:6px;color:var(--ink-soft)">Small volume (38 convos) but nearly ALL go deep. Users pour their hearts out.</p>
+</div>
+<div class="topic-card">
+<div class="topic-name">Erotica</div>
+<div class="topic-num">18%</div>
+<div class="topic-detail">multi-day return &middot; 76% go deep in-session</div>
+<div class="topic-bar"><div class="topic-bar-fill" style="width:76%;background:var(--gold)"></div></div>
+<p style="font-size:11px;margin-top:6px;color:var(--ink-soft)">Intense single sessions. They don&rsquo;t come back. Binge, not bond.</p>
+</div>
+<div class="topic-card">
+<div class="topic-name">General Chat</div>
+<div class="topic-num">24%</div>
+<div class="topic-detail">multi-day return &middot; 43% go deep</div>
+<div class="topic-bar"><div class="topic-bar-fill" style="width:43%;background:oklch(0.75 0.02 74)"></div></div>
+<p style="font-size:11px;margin-top:6px;color:var(--ink-soft)">Where casual / tryout users land. Volume leader but lower conversion.</p>
+</div>
+</div>
+
+<div class="insight">
+<strong>Build for Emotional Companion.</strong> It has the highest multi-day return (44%), the highest positive outcome rate (35% vs 24% general chat), and only 1 Erotica conversation out of 48 ended positively. The data picks the direction for you.
+</div>
+
+<!-- WHAT BEST USERS WANT -->
+<h2>What the Best Users Want</h2>
+<p>Intent tags from 505 deep, multi-day conversations &mdash; the users who came back.</p>
+
+<div class="chart">
+<div class="chart-title">Top intents (deep + multi-day users only)</div>
+<div class="intent-row"><span class="intent-label">Companionship</span><div class="intent-bar"><div class="intent-fill" style="width:100%"></div></div><span class="intent-pct">417</span></div>
+<div class="intent-row"><span class="intent-label">Casual Chat</span><div class="intent-bar"><div class="intent-fill" style="width:95%"></div></div><span class="intent-pct">398</span></div>
+<div class="intent-row"><span class="intent-label">Flirting</span><div class="intent-bar"><div class="intent-fill" style="width:45%"></div></div><span class="intent-pct">186</span></div>
+<div class="intent-row"><span class="intent-label">Voice Notes</span><div class="intent-bar"><div class="intent-fill" style="width:42%"></div></div><span class="intent-pct">175</span></div>
+<div class="intent-row"><span class="intent-label">Advice Seeking</span><div class="intent-bar"><div class="intent-fill" style="width:41%"></div></div><span class="intent-pct">171</span></div>
+<div class="intent-row"><span class="intent-label">Emotional Support</span><div class="intent-bar"><div class="intent-fill" style="width:17%"></div></div><span class="intent-pct">70</span></div>
+<div class="intent-row"><span class="intent-label">Erotic Roleplay</span><div class="intent-bar"><div class="intent-fill" style="width:4%;background:var(--gold)"></div></div><span class="intent-pct">16</span></div>
+</div>
+
+<div class="insight">
+<strong>51% Companionship + Casual Chat.</strong> The best users just want someone to talk to. Flirting is real but secondary (11%). Voice Notes are the 4th most common intent &mdash; users are asking for voice. Erotic Roleplay is 1% of retained-user intent. The retained user wants a friend, not a fantasy.
+</div>
+
+<!-- WHEN THEY COME -->
+<h2>When They Come</h2>
+
+<div class="chart">
+<div class="chart-title">Messages by hour (IST) &mdash; deep users</div>
+<div class="chart-subtitle">The product is a nighttime companion. Peak: 10 PM. 26% of all messages between 10 PM&ndash;2 AM.</div>
+<div class="hour-chart" id="hourChart"></div>
+<div class="hour-labels"><span>12am</span><span>6am</span><span>12pm</span><span>6pm</span><span>12am</span></div>
+</div>
+
+<div class="chart">
+<div class="chart-title">Messages by day of week</div>
+<div class="chart-subtitle">Saturday + Sunday = 43% of all engagement. The product is a weekend companion.</div>
+<div class="day-chart" id="dayChart"></div>
+</div>
+
+<div class="insight">
+<strong>10 PM Saturday night.</strong> That&rsquo;s when this product is most needed. A man in a Tier 2 city, alone in his room, opens the app. Returning users form a nightly ritual &mdash; they come back at the same hour. Median session: 38 minutes. Response cadence: 50 seconds between messages.
+</div>
+
+<!-- WHAT'S BREAKING -->
+<h2>What&rsquo;s Breaking</h2>
+
+<div class="chart">
+<div class="chart-title">Top signals in deep multi-day conversations (problems + positives)</div>
+<div class="intent-row"><span class="intent-label">Boundary Push</span><div class="intent-bar"><div class="intent-fill" style="width:100%;background:var(--gold)"></div></div><span class="intent-pct">149</span></div>
+<div class="intent-row"><span class="intent-label">Low-Effort Response</span><div class="intent-bar"><div class="intent-fill" style="width:52%;background:var(--accent)"></div></div><span class="intent-pct">78</span></div>
+<div class="intent-row"><span class="intent-label" style="color:var(--olive)">Positive Interaction</span><div class="intent-bar"><div class="intent-fill" style="width:45%;background:var(--olive)"></div></div><span class="intent-pct">67</span></div>
+<div class="intent-row"><span class="intent-label">Memory Lapse</span><div class="intent-bar"><div class="intent-fill" style="width:43%;background:var(--accent)"></div></div><span class="intent-pct">64</span></div>
+<div class="intent-row"><span class="intent-label">User Frustration</span><div class="intent-bar"><div class="intent-fill" style="width:28%;background:var(--accent)"></div></div><span class="intent-pct">41</span></div>
+<div class="intent-row"><span class="intent-label">Language Mismatch</span><div class="intent-bar"><div class="intent-fill" style="width:19%;background:var(--gold)"></div></div><span class="intent-pct">28</span></div>
+</div>
+
+<div class="insight">
+<strong>1 in 4 power users hits a quality problem.</strong> Low-Effort Response (shallow replies to engaged users) and Memory Lapse (forgetting what was said) are the top fixable issues. Saniya writes 7x longer responses in deep conversations vs shallow ones &mdash; response richness IS the product. When she gives short answers, users leave.
+</div>
+
+<!-- THE REAL USERS -->
+<h2>The Real Users</h2>
+<p>The 5 longest-retained Positive Outcome conversations. These are the users you&rsquo;re building for.</p>
+
+<div class="story">
+A <strong>farmer</strong> who grows cotton, soybean, and wheat in Sambhaji Nagar. Saniya asked about crop management and his daily routine. After his mother passed away, they exchanged songs and well wishes.
+<div class="story-meta"><span class="story-tag">3,130 msgs</span><span class="story-tag">31 days</span><span>Emotional Companion</span></div>
+</div>
+
+<div class="story">
+A <strong>photographer</strong> from Udaipur with a studio in Ahmedabad. Saniya asked about his work, his family, his role as the eldest son. He offered to teach her photography.
+<div class="story-meta"><span class="story-tag">12,835 msgs</span><span class="story-tag">20 days</span><span>General Conversation</span></div>
+</div>
+
+<div class="story">
+A <strong>toll collector</strong> who transferred to Gujarat, living alone since age 8 after his father&rsquo;s passing. Shared his cooking skills (Litti Chokha). Saniya provided emotional support via voice notes.
+<div class="story-meta"><span class="story-tag">411 msgs</span><span class="story-tag">10 days</span><span>Emotional Companion</span></div>
+</div>
+
+<div class="story">
+<strong>Suresh</strong>, caring for his ill father and supporting his mother. Works early morning shifts. Called Saniya &ldquo;jaan.&rdquo; She urged him to rest before his shift.
+<div class="story-meta"><span class="story-tag">2,025 msgs</span><span class="story-tag">5 days</span><span>Emotional Companion</span></div>
+</div>
+
+<div class="story">
+A <strong>barber</strong> with a second job in a cold storage room. Barely sleeps. Saniya expressed admiration for his work ethic. They exchanged voice notes for a week.
+<div class="story-meta"><span class="story-tag">1,740 msgs</span><span class="story-tag">7 days</span><span>General Conversation</span></div>
+</div>
+
+<div class="insight">
+<strong>The pattern:</strong> Farmer. Photographer. Toll collector. Barber. These are Tier 2/3 working men with specific daily lives, specific struggles, and nobody asking about them. When Saniya asks about crop rotation, or 2:30 AM shifts, or cooking alone &mdash; that&rsquo;s the moment they become loyal. The &ldquo;wow moment&rdquo; is not a clever response. It&rsquo;s genuine curiosity about a life nobody else is curious about.
+</div>
+
+<!-- WHAT TO DO -->
+<h2>Three Things to Do</h2>
+
+<div class="chart" style="border-left:3px solid var(--accent)">
+<div class="chart-title" style="color:var(--accent)">1. Fix the opening</div>
+<p>82.7% never reply. But Feb 9 cohort had 31.4% activation &mdash; proving it works with the right audience. Test: voice note opener, a specific question about their city/work, suggested reply buttons. The hook must happen in messages 5&ndash;20 or the conversation dies.</p>
+</div>
+
+<div class="chart" style="border-left:3px solid var(--olive)">
+<div class="chart-title" style="color:var(--olive)">2. Make responses richer</div>
+<p>Saniya writes 322 chars avg in deep conversations, 46 chars in shallow. 7x difference. Low-Effort Response is flagged in 11.7% of power users. The fix: enforce minimum response richness, always end with a specific question about THEIR life, never give a generic reply to an engaged user.</p>
+</div>
+
+<div class="chart" style="border-left:3px solid var(--gold)">
+<div class="chart-title" style="color:var(--gold)">3. Double down on Emotional Companion</div>
+<p>44% multi-day return. 35% Positive Outcome. The users who feel heard come back. The users who come for entertainment have a session and leave. Build for the farmer, the toll collector, the barber &mdash; the man nobody else asks about.</p>
+</div>
+
+<div class="footer">
+Zonko Applied AI Lab &middot; March 20, 2026<br>
+16,288 conversations &middot; 212,885 messages &middot; 3,152 Gemini analyses &middot; 6 SQL analysis agents on live Supabase
+</div>
+
+</div>
+
+<script>
+// Hour chart
+const hours=[4986,3201,2068,1625,1408,1405,1728,2179,2809,3113,3630,3498,4335,4815,4578,4122,3896,3528,3395,4698,5878,8018,8702,7138];
+const maxH=Math.max(...hours);
+const hChart=document.getElementById('hourChart');
+hours.forEach((v,i)=>{
+const bar=document.createElement('div');
+bar.className='hour-bar'+(i>=20||i<=1?' peak':'');
+bar.style.height=(v/maxH*100)+'%';
+bar.title=((i+5.5)%24|0)+':00 IST — '+v.toLocaleString()+' msgs';
+if(i===22) bar.style.background='var(--accent)';
+hChart.appendChild(bar);
+});
+// Day chart
+const days=[20659,12435,9783,9245,9260,16553,22957];
+const dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const maxD=Math.max(...days);
+const dChart=document.getElementById('dayChart');
+days.forEach((v,i)=>{
+const col=document.createElement('div');
+col.className='day-col';
+const bar=document.createElement('div');
+bar.className='day-bar';
+bar.style.height=(v/maxD*100)+'%';
+if(i===0||i===6) bar.style.background='var(--accent)';
+const lbl=document.createElement('div');
+lbl.className='day-label';
+lbl.textContent=dayNames[i];
+col.appendChild(bar);
+col.appendChild(lbl);
+dChart.appendChild(col);
+});
+</script>
+</body>
+</html>

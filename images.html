@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saniya: User Images</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+:root{--ink:oklch(0.23 0.03 32);--ink-soft:oklch(0.37 0.03 30);--line:oklch(0.81 0.03 58);--accent:oklch(0.61 0.2 27);--body:"Instrument Sans","Helvetica Neue",sans-serif;--display:"Fraunces","Georgia",serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);background:linear-gradient(180deg,#f7f0e6,#f2e7d7);min-height:100vh}
+.page{max-width:1280px;margin:0 auto;padding:40px 24px 100px}
+h1{font-family:var(--display);font-size:28px;font-weight:700}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-soft);font-weight:600}
+.sub{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
+.divider{height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin:20px 0;opacity:0.3}
+.stats{font-size:14px;color:var(--ink-soft);margin-bottom:20px}
+.stats b{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(86,39,20,.04);cursor:pointer;transition:transform .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(86,39,20,.1)}
+.card img{width:100%;display:block;object-fit:cover;aspect-ratio:1;background:oklch(0.94 0.01 74)}
+.card .m{padding:8px 12px;font-size:11px;color:var(--ink-soft);display:flex;justify-content:space-between}
+.card .m b{color:var(--accent)}
+.ph{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:oklch(0.94 0.01 74);color:oklch(0.7 0.02 74);font-size:12px}
+.sp{display:inline-block;width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:s .7s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.btn{display:block;margin:32px auto;padding:12px 32px;font-family:var(--body);font-size:14px;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer}
+.btn:hover{opacity:.85}
+.lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:pointer}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:92vh;border-radius:8px}
+.lb button{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:36px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="page">
+<p class="kicker">Zonko &middot; Saniya</p>
+<h1>User-Shared Images</h1>
+<p class="sub">Every image users sent to Saniya &mdash; click to enlarge</p>
+<div class="divider"></div>
+<div class="stats" id="st"><span class="sp"></span> Loading...</div>
+<div class="grid" id="g"></div>
+<button class="btn" id="more" style="display:none">Load more</button>
+</div>
+<div class="lb" id="lb"><button>&times;</button><img id="li" src="" alt=""></div>
+<script>
+const U='https://rtecsbxfnhgfbreaxpmv.supabase.co';
+const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0ZWNzYnhmbmhnZmJyZWF4cG12Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NjU0MjE4NSwiZXhwIjoyMDgyMTE4MTg1fQ.T0LAEAOLnmLBv5FrXEpuIZEGWTvx3qFGLie8IcNKJuw';
+const B='28aad775-6dc3-4a75-af02-35ffae908473';
+const s=supabase.createClient(U,SK);
+const g=document.getElementById('g'),st=document.getElementById('st'),mb=document.getElementById('more');
+const lb=document.getElementById('lb'),li=document.getElementById('li');
+let D=[],r=0,SZ=40;
+
+async function rpc(q){const{data,error}=await s.rpc('execute_sql',{query_text:q});if(error)throw error;return data||[]}
+
+async function init(){
+try{
+const rows=await rpc("SELECT mu.id,mu.storage_path,mu.file_size_bytes,m.created_at,m.conversation_id FROM hero_app_messages m JOIN hero_app_conversations c ON c.id=m.conversation_id JOIN hero_app_media_uploads mu ON mu.id=m.media_id WHERE c.bot_id='"+B+"' AND m.role='user' AND mu.media_type='image' AND mu.deleted_at IS NULL ORDER BY m.created_at DESC");
+D=rows;st.innerHTML='<b>'+rows.length+'</b> images from users';
+batch();
+}catch(e){st.textContent='Error: '+e.message;console.error(e)}
+}
+
+function batch(){
+const e=Math.min(r+SZ,D.length);
+for(let i=r;i<e;i++){
+const m=D[i],c=document.createElement('div');c.className='card';
+c.innerHTML='<div class="ph" id="p'+i+'"><span class="sp"></span></div><div class="m"><span>'+fd(m.created_at)+'</span><b>'+fs(m.file_size_bytes)+'</b></div>';
+g.appendChild(c);load(i,m.storage_path);
+}
+r=e;mb.style.display=r<D.length?'block':'none';
+}
+
+async function load(i,p){
+const ph=document.getElementById('p'+i);if(!ph)return;
+try{
+const{data,error}=await s.storage.from('hero-app-media').createSignedUrl(p,3600);
+if(error||!data?.signedUrl){ph.textContent='N/A';return}
+const img=document.createElement('img');img.src=data.signedUrl;img.loading='lazy';
+img.onclick=()=>{li.src=data.signedUrl;lb.classList.add('open')};
+img.onerror=()=>{ph.textContent='Failed'};ph.replaceWith(img);
+}catch(e){ph.textContent='Err'}
+}
+
+function fd(d){if(!d)return'';const x=new Date(d);return x.toLocaleDateString('en-IN',{month:'short',day:'numeric'})}
+function fs(b){if(!b)return'';if(b<1024)return b+'B';if(b<1048576)return(b/1024|0)+'KB';return(b/1048576).toFixed(1)+'MB'}
+
+lb.onclick=()=>{lb.classList.remove('open');li.src=''};
+document.onkeydown=e=>{if(e.key==='Escape'){lb.classList.remove('open');li.src=''}};
+mb.onclick=batch;
+init();
+</script>
+</body>
+</html>

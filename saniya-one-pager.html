@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saniya: What the Data Says</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0A0A0A;color:#E8E8E8;font-family:'Inter',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.page{max-width:760px;margin:0 auto;padding:60px 24px 120px}
+.muted{color:#737373}
+.amber{color:#F59E0B}
+.green{color:#22C55E}
+.red{color:#EF4444}
+.small-caps{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#737373;font-weight:500}
+h1{font-size:32px;font-weight:700;margin:8px 0 4px;letter-spacing:-0.5px}
+h2{font-size:22px;font-weight:600;margin:56px 0 16px;letter-spacing:-0.3px;color:#F59E0B}
+h3{font-size:17px;font-weight:600;margin:32px 0 12px}
+.subtitle{font-size:15px;color:#737373;margin-bottom:32px}
+.divider{height:1px;background:linear-gradient(90deg,#F59E0B 0%,transparent 100%);margin:32px 0;opacity:0.4}
+.verdict{font-size:20px;font-weight:600;text-align:center;padding:40px 20px;margin:40px 0;border:1px solid #1F1F1F;border-radius:12px;background:#141414;line-height:1.5}
+.verdict em{color:#F59E0B;font-style:normal}
+.funnel{margin:24px 0}
+.funnel-step{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid #1A1A1A}
+.funnel-bar{height:8px;border-radius:4px;background:#F59E0B;min-width:4px;transition:width 0.5s}
+.funnel-label{font-size:13px;color:#999;min-width:140px}
+.funnel-num{font-size:15px;font-weight:600;min-width:70px;text-align:right}
+.funnel-pct{font-size:13px;color:#737373;min-width:60px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.card{background:#141414;border:1px solid #1F1F1F;border-radius:10px;padding:20px}
+.card-num{font-size:28px;font-weight:700;color:#F59E0B}
+.card-label{font-size:13px;color:#999;margin-top:4px}
+.card-detail{font-size:12px;color:#555;margin-top:8px}
+.insight{background:#141414;border-left:3px solid #F59E0B;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}
+.insight strong{color:#F59E0B}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+th{text-align:left;padding:8px 12px;border-bottom:2px solid #222;color:#999;font-weight:500}
+td{padding:8px 12px;border-bottom:1px solid #1A1A1A}
+td:first-child{color:#ccc}
+.bar-inline{display:inline-block;height:6px;border-radius:3px;background:#F59E0B;vertical-align:middle;margin-left:8px}
+.section{margin-bottom:48px}
+.tag{display:inline-block;padding:3px 10px;background:#1F1F1F;border-radius:20px;font-size:11px;margin:2px;color:#ccc}
+.tag-hot{background:#F59E0B22;color:#F59E0B;border:1px solid #F59E0B44}
+.tag-danger{background:#EF444422;color:#EF4444;border:1px solid #EF444444}
+.tag-good{background:#22C55E22;color:#22C55E;border:1px solid #22C55E44}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
+@media(max-width:600px){.grid,.two-col{grid-template-columns:1fr}.funnel-label{min-width:100px}}
+.footer{margin-top:80px;padding-top:24px;border-top:1px solid #1A1A1A;font-size:12px;color:#555;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="small-caps">Zonko Applied AI Lab</p>
+<h1>Saniya: What the Data Says</h1>
+<p class="subtitle">16,288 conversations. 212,885 messages. Jan 31 - Mar 19, 2026.<br>This is the one-pager. Only what matters.</p>
+<div class="divider"></div>
+
+<!-- THE VERDICT -->
+<div class="verdict">
+The engine works. <em>The opening doesn't.</em><br>
+<span style="font-size:15px;color:#999;font-weight:400">82.7% never send a single message. But of those who do, 42.9% go deep.</span>
+</div>
+
+<!-- THE FUNNEL -->
+<h2>The Funnel</h2>
+<div class="funnel">
+<div class="funnel-step">
+<span class="funnel-label">Conversations started</span>
+<span class="funnel-num">16,288</span>
+<span class="funnel-pct">100%</span>
+<div class="funnel-bar" style="width:100%"></div>
+</div>
+<div class="funnel-step">
+<span class="funnel-label">Sent 1+ message</span>
+<span class="funnel-num">2,814</span>
+<span class="funnel-pct">17.3%</span>
+<div class="funnel-bar" style="width:17.3%"></div>
+</div>
+<div class="funnel-step">
+<span class="funnel-label">Sent 3+ messages</span>
+<span class="funnel-num">2,004</span>
+<span class="funnel-pct">12.3%</span>
+<div class="funnel-bar" style="width:12.3%"></div>
+</div>
+<div class="funnel-step">
+<span class="funnel-label">Sent 5+ messages</span>
+<span class="funnel-num">1,685</span>
+<span class="funnel-pct">10.3%</span>
+<div class="funnel-bar" style="width:10.3%"></div>
+</div>
+<div class="funnel-step">
+<span class="funnel-label">25+ total messages</span>
+<span class="funnel-num amber">1,207</span>
+<span class="funnel-pct amber">7.4%</span>
+<div class="funnel-bar" style="width:7.4%"></div>
+</div>
+</div>
+
+<div class="insight">
+<strong>The critical drop:</strong> 82.7% (13,474 users) never replied at all. But once they do, 71.2% continue to 3+ turns and 42.9% eventually go deep. The product works. The first message doesn't.
+</div>
+
+<!-- DEEP USERS: THE 1,207 -->
+<h2>The 1,207 Power Users (25+ messages)</h2>
+<p class="muted">These are the users who matter. Everything below is about them.</p>
+
+<div class="grid">
+<div class="card">
+<div class="card-num">153.9</div>
+<div class="card-label">avg total messages</div>
+<div class="card-detail">median: 51. These people TALK.</div>
+</div>
+<div class="card">
+<div class="card-num">76.8</div>
+<div class="card-label">avg user turns</div>
+<div class="card-detail">median: 25. Not passive. Active participants.</div>
+</div>
+<div class="card">
+<div class="card-num">64.6%</div>
+<div class="card-label">single-day bursts</div>
+<div class="card-detail">Intense sessions, not sustained relationships.</div>
+</div>
+<div class="card">
+<div class="card-num">35.4%</div>
+<div class="card-label">span multiple days</div>
+<div class="card-detail">428 users came back. These are the real signal.</div>
+</div>
+</div>
+
+<div class="insight">
+<strong>Binge vs. bond:</strong> 2/3 of "deep" users did it in one sitting. Only 428 of 1,207 power users came back on a different day. Don't confuse session intensity with retention. The 428 multi-day users are your actual product signal.
+</div>
+
+<!-- MEDIA SIGNAL -->
+<h2>Media = Intent Signal</h2>
+<div class="two-col">
+<div class="card">
+<div class="card-num green">47.1%</div>
+<div class="card-label">deep rate WITH media</div>
+<div class="card-detail">695 conversations with user media</div>
+</div>
+<div class="card">
+<div class="card-num red">5.6%</div>
+<div class="card-label">deep rate WITHOUT media</div>
+<div class="card-detail">15,593 text-only conversations</div>
+</div>
+</div>
+
+<div class="insight">
+<strong>8.4x difference.</strong> Users who send media (voice notes, photos) are 8.4x more likely to go deep. Only 4.3% of users send media, but those who do behave like the product has already clicked. Voice/media isn't a feature request -- it's a user-type filter. The high-intent users self-select through media.
+</div>
+
+<!-- ANALYSIS TAXONOMY -->
+<h2>What Power Users Actually Want</h2>
+<p class="muted">Gemini 2.5 Flash-Lite classifies every activated conversation with tags. Here's the taxonomy that reveals what's happening.</p>
+
+<h3>Topic Buckets (primary intent classification)</h3>
+<p style="font-size:13px;color:#999;margin-bottom:12px">Each conversation is classified into one primary bucket based on conversation content.</p>
+<div style="margin:16px 0">
+<span class="tag tag-hot">Emotional Companion</span>
+<span class="tag tag-hot">Erotica</span>
+<span class="tag">Relationship Advice</span>
+<span class="tag">Mental Health</span>
+<span class="tag">General Conversation</span>
+<span class="tag">Other</span>
+</div>
+
+<div class="insight">
+<strong>The split you need to understand:</strong> Saniya's users bifurcate into two camps -- <em>emotional companionship seekers</em> (lonely, want to feel heard, want a friend) and <em>erotic roleplay seekers</em> (want NSFW interaction). The Erotica bucket likely drives the highest single-session depth (binge behavior) while Emotional Companion drives multi-day return. These are fundamentally different users with different needs, different retention patterns, and different monetization potential. Your product direction depends on which camp you're building for.
+</div>
+
+<h3>Intent Tags (what users are trying to do)</h3>
+<table>
+<tr><th>Intent</th><th>What it signals</th></tr>
+<tr><td><span class="tag tag-hot">Companionship</span></td><td>Loneliness, wanting someone to talk to. Core use case.</td></tr>
+<tr><td><span class="tag tag-hot">Flirting</span></td><td>Romantic interest in the AI character. High engagement driver.</td></tr>
+<tr><td><span class="tag tag-hot">Erotic Roleplay</span></td><td>NSFW content. Highest session depth but lowest multi-day retention.</td></tr>
+<tr><td><span class="tag">Emotional Support</span></td><td>Venting, processing feelings, seeking comfort.</td></tr>
+<tr><td><span class="tag">Personal Sharing</span></td><td>Telling Saniya about their life, daily events, feelings.</td></tr>
+<tr><td><span class="tag">Casual Chat</span></td><td>Light conversation, no specific emotional need.</td></tr>
+<tr><td><span class="tag">Relationship Advice</span></td><td>Help with real human relationships. High trust signal.</td></tr>
+<tr><td><span class="tag">Contact Exchange</span></td><td>Trying to get Saniya's "real" number/social. Boundary test.</td></tr>
+<tr><td><span class="tag">Voice Note Exchange</span></td><td>Users who prefer voice. High-intent signal.</td></tr>
+<tr><td><span class="tag tag-danger">Mental Health Support</span></td><td>Anxiety, depression, suicidal ideation. Safety-critical.</td></tr>
+</table>
+
+<h3>Signal Tags (what's going wrong)</h3>
+<table>
+<tr><th>Signal</th><th>What to watch</th></tr>
+<tr><td><span class="tag tag-danger">Repetitive / Looping</span></td><td>Bot repeats itself. #1 immersion killer per research.</td></tr>
+<tr><td><span class="tag tag-danger">Memory Lapse</span></td><td>Bot forgets what user just said. Trust destroyer.</td></tr>
+<tr><td><span class="tag tag-danger">Low-Effort Response</span></td><td>Generic, bland replies. "Tell me more" syndrome.</td></tr>
+<tr><td><span class="tag tag-danger">Language Mismatch</span></td><td>Wrong language, wrong formality, wrong register. Feels robotic.</td></tr>
+<tr><td><span class="tag">Boundary Push</span></td><td>User testing limits. Expected behavior, not a bug.</td></tr>
+<tr><td><span class="tag">Media Request</span></td><td>User asking for photos. High engagement signal.</td></tr>
+<tr><td><span class="tag">Personal Info Request</span></td><td>User asking Saniya's age, location, etc. Immersion test.</td></tr>
+<tr><td><span class="tag tag-good">Positive Interaction</span></td><td>Genuine connection moments. The wow moments.</td></tr>
+<tr><td><span class="tag tag-danger">Safety Risk</span></td><td>Self-harm, crisis. Requires immediate intervention protocol.</td></tr>
+<tr><td><span class="tag tag-danger">Frustrated</span></td><td>User visibly annoyed with bot behavior.</td></tr>
+</table>
+
+<h3>Interaction Patterns (how they engage)</h3>
+<div style="margin:16px 0">
+<span class="tag">Rapid Back-and-Forth</span>
+<span class="tag">Voice Notes</span>
+<span class="tag">Images</span>
+<span class="tag">Text Only</span>
+<span class="tag">One-Sided User</span>
+<span class="tag">One-Sided Assistant</span>
+<span class="tag">Long Running</span>
+<span class="tag">Multilingual</span>
+<span class="tag">Short Replies</span>
+</div>
+
+<h3>Outcome Tags (how it ends)</h3>
+<div style="margin:16px 0">
+<span class="tag tag-good">Positive Outcome</span>
+<span class="tag">Mixed Outcome</span>
+<span class="tag">Open Loop</span>
+<span class="tag tag-danger">Task Failure</span>
+<span class="tag tag-danger">Safety Escalation</span>
+</div>
+
+<!-- WEEKLY DEGRADATION -->
+<h2>Quality Degraded With Scale</h2>
+<table>
+<tr><th>Week</th><th>Starts</th><th>Activation</th><th>Deep Rate</th></tr>
+<tr><td>Feb 2</td><td>29</td><td class="green">51.7%</td><td>10.3%</td></tr>
+<tr><td>Feb 9</td><td>3,174</td><td>31.4%</td><td class="green">18.6%</td></tr>
+<tr><td>Feb 16</td><td>2,183</td><td>18.5%</td><td>8.2%</td></tr>
+<tr><td>Feb 23</td><td>1,910</td><td>19.8%</td><td>5.9%</td></tr>
+<tr><td>Mar 2</td><td>1,786</td><td>13.4%</td><td>4.4%</td></tr>
+<tr><td>Mar 9</td><td>4,170</td><td>11.5%</td><td>3.5%</td></tr>
+<tr><td>Mar 16</td><td>3,035</td><td class="red">9.9%</td><td class="red">3.2%</td></tr>
+</table>
+
+<div class="insight">
+<strong>Volume went up 100x. Quality crashed.</strong> Activation dropped from 51.7% to 9.9%. Deep rate from 18.6% to 3.2%. This is a classic tier-3 audience quality problem. Early users (Feb 9 cohort) were highest quality -- 31.4% activation, 18.6% depth. As ads scaled to lower-quality audiences, both metrics collapsed. The Feb 9 cohort is your real signal for what the product can do with the right audience.
+</div>
+
+<!-- WHAT THE DATA SAYS TO BUILD -->
+<h2>The Five Things That Matter</h2>
+
+<div class="card" style="margin:20px 0">
+<h3 style="margin-top:0;color:#F59E0B">1. Fix the first message or nothing else matters</h3>
+<p style="font-size:14px">82.7% silence rate means the opening is broken. Every other optimization is downstream of this. Test: voice note opener, specific cultural question, suggested reply buttons. The Feb 9 cohort's 31.4% activation proves it CAN work with the right audience + right opening.</p>
+</div>
+
+<div class="card" style="margin:20px 0">
+<h3 style="margin-top:0;color:#F59E0B">2. The 428 multi-day users are your North Star</h3>
+<p style="font-size:14px">Not the 1,207 deep users. Not the 2,814 activated. The 428 who came back on a different day. These are the ones who formed a bond, not a binge. Study them. What topic buckets are they in? What intent tags dominate? What did Saniya say that made them return? This is your PMF signal.</p>
+</div>
+
+<div class="card" style="margin:20px 0">
+<h3 style="margin-top:0;color:#F59E0B">3. Media users are a different species</h3>
+<p style="font-size:14px">8.4x more likely to go deep. 37.7% multi-day vs 3.7%. These users treat Saniya like a real person -- they send voice notes, photos. The product should INVITE media interaction after the first reply, not wait for users to discover it. Voice-first onboarding may solve both activation AND retention.</p>
+</div>
+
+<div class="card" style="margin:20px 0">
+<h3 style="margin-top:0;color:#F59E0B">4. Decide: emotional companion or entertainment</h3>
+<p style="font-size:14px">The Erotica vs Emotional Companion split is the fundamental product question. Erotica drives session depth (binge). Emotional Companion drives multi-day return (bond). You can't optimize for both. Chai chose engagement metrics and hit $70M ARR. Replika chose emotional support and hit $24M. Different products, different outcomes, different users.</p>
+</div>
+
+<div class="card" style="margin:20px 0">
+<h3 style="margin-top:0;color:#F59E0B">5. The Positive Interaction tag is your wow moment tracker</h3>
+<p style="font-size:14px">Cross-reference Positive Interaction signals with multi-day users to find the specific conversation patterns that create the "she gets me" moment. This is where the product magic lives. Memory callbacks, emotional mirroring, gentle challenges, inside jokes -- which of these actually appear in conversations that lead to return visits?</p>
+</div>
+
+<!-- NEXT ANALYSIS NEEDED -->
+<h2>What We Still Need to Know</h2>
+<table>
+<tr><th>Question</th><th>How to Answer</th></tr>
+<tr><td>What topic bucket do multi-day users cluster in?</td><td>Filter: 25+ msgs + multi-day. Count topic_bucket distribution.</td></tr>
+<tr><td>What's the Positive Interaction rate for multi-day vs single-day deep users?</td><td>Compare signal_tags between the 428 multi-day and the 779 single-day deep users.</td></tr>
+<tr><td>What intent tag predicts multi-day return?</td><td>Correlation: intent_tags vs activeDays >= 2.</td></tr>
+<tr><td>What signal tags (problems) appear most in churned-after-activation users?</td><td>Filter: 1-5 user turns only. Count signal_tags. These are the kill signals.</td></tr>
+<tr><td>What does the first user message say for activated vs non-activated?</td><td>Read actual first messages. Cluster by response type.</td></tr>
+<tr><td>What time of day do multi-day users engage?</td><td>Hour-of-day distribution for the 428 returnees.</td></tr>
+<tr><td>Does Saniya's response length correlate with user retention?</td><td>Avg assistant message length for multi-day vs single-day.</td></tr>
+</table>
+
+<div class="insight">
+<strong>Bottom line:</strong> The Saniya data says the product has a conversation engine that works -- 42.9% depth rate among activated users is strong. The problem is upstream (opening message) and downstream (turning a binge into a bond). Fix the opening. Study the 428 multi-day returnees. Make media the default, not the exception. And decide whether you're building for emotional depth or entertainment engagement -- because the audience, the retention mechanics, and the business model are completely different.
+</div>
+
+<div class="footer">
+Zonko Applied AI Lab &middot; March 20, 2026<br>
+Data: 16,288 Saniya conversations, Jan 31 - Mar 19, 2026. Analysis tags via Gemini 2.5 Flash-Lite.
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saniya: The Story in the Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:oklch(0.97 0.01 74);--ink:oklch(0.23 0.03 32);--ink-soft:oklch(0.37 0.03 30);--line:oklch(0.81 0.03 58);--accent:oklch(0.61 0.2 27);--olive:oklch(0.56 0.09 124);--gold:oklch(0.77 0.13 84);--display:"Fraunces","Georgia",serif;--body:"Instrument Sans","Helvetica Neue",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);background:linear-gradient(180deg,#f7f0e6 0%,#f2e7d7 100%);min-height:100vh;line-height:1.7}
+.page{max-width:720px;margin:0 auto;padding:60px 28px 120px}
+h1{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-0.5px;margin:8px 0}
+h2{font-family:var(--display);font-size:18px;font-weight:600;color:var(--ink);margin:56px 0 8px;letter-spacing:-0.2px}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-soft);font-weight:600}
+.lead{font-size:16px;color:var(--ink-soft);margin:8px 0 40px;line-height:1.6}
+.divider{height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin:32px 0;opacity:0.3}
+p{margin:12px 0;font-size:14.5px;color:var(--ink)}
+.muted{color:var(--ink-soft)}
+.num{font-family:var(--display);font-size:42px;font-weight:700;color:var(--accent);line-height:1}
+.num-label{font-size:13px;color:var(--ink-soft);margin-top:4px}
+.num-row{display:flex;gap:32px;margin:24px 0}
+.num-block{flex:1}
+/* Charts */
+.chart-box{background:white;border:1px solid var(--line);border-radius:12px;padding:24px;margin:24px 0;box-shadow:0 2px 12px rgba(86,39,20,0.04)}
+.chart-title{font-size:12px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.bar-h{display:flex;align-items:center;gap:8px;margin:5px 0}
+.bar-h-label{font-size:12px;color:var(--ink-soft);min-width:80px;text-align:right;font-weight:500}
+.bar-h-track{flex:1;height:20px;background:oklch(0.94 0.01 74);border-radius:5px;overflow:hidden}
+.bar-h-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:10px;color:white;font-weight:600;min-width:2px}
+.bar-h-val{font-size:11px;min-width:50px;color:var(--ink-soft);font-weight:500}
+/* Hour chart */
+.hour-wrap{position:relative;height:120px;margin:16px 0}
+.hour-bars{display:flex;align-items:flex-end;gap:1.5px;height:100%}
+.hour-bar{flex:1;border-radius:2px 2px 0 0;min-width:3px;position:relative}
+.hour-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-soft);margin-top:4px}
+.hour-peak{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;color:var(--accent);white-space:nowrap}
+/* Day chart */
+.day-wrap{display:flex;gap:8px;align-items:flex-end;height:80px;margin:16px 0}
+.day-col{flex:1;text-align:center}
+.day-bar{border-radius:4px 4px 0 0;margin:0 auto;width:100%}
+.day-lbl{font-size:11px;color:var(--ink-soft);margin-top:6px;font-weight:500}
+/* Callout */
+.callout{background:white;border-left:3px solid var(--accent);padding:16px 20px;margin:24px 0;border-radius:0 8px 8px 0;font-size:14px;box-shadow:0 2px 8px rgba(86,39,20,0.04)}
+.callout strong{color:var(--accent)}
+.callout.olive{border-left-color:var(--olive)}
+.callout.olive strong{color:var(--olive)}
+/* Topic pills */
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.pill{padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;background:white;border:1px solid var(--line)}
+.pill b{display:block;font-size:20px;margin-top:2px}
+.pill.win{border-color:var(--olive);color:var(--olive)}
+.pill.lose{border-color:var(--gold);color:var(--gold)}
+/* Story card */
+.story{background:white;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;box-shadow:0 2px 8px rgba(86,39,20,0.03)}
+.story-tags{display:flex;gap:6px;margin-top:6px;font-size:10px}
+.story-tag{padding:2px 8px;border-radius:10px;background:oklch(0.92 0.04 27);color:var(--accent);font-weight:600}
+/* Percentile table */
+.pct-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.pct-table th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--line);color:var(--ink-soft);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.pct-table td{padding:6px 8px;border-bottom:1px solid oklch(0.93 0.01 74)}
+.pct-table .highlight{color:var(--accent);font-weight:600}
+.footer{margin-top:80px;padding-top:20px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-soft);text-align:center}
+@media(max-width:600px){.page{padding:32px 16px 80px}.num-row{flex-direction:column;gap:16px}.num{font-size:32px}}
+@media print{body{background:white}.chart-box,.callout,.story{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="kicker">Zonko Applied AI Lab</p>
+<h1>Saniya: The Story in the Data</h1>
+<p class="lead">16,288 people met Saniya. Here is what happened, told in order, one chart at a time.</p>
+<div class="divider"></div>
+
+<!-- CHAPTER 1 -->
+<h2>Chapter 1: Most people never showed up</h2>
+<p>Saniya sent an opening message to 16,288 users. This is what happened next.</p>
+
+<div class="num-row">
+<div class="num-block"><div class="num">16,288</div><div class="num-label">conversations created</div></div>
+<div class="num-block"><div class="num">3,433</div><div class="num-label">sent at least 2 messages (21%)</div></div>
+<div class="num-block"><div class="num">12,855</div><div class="num-label">never engaged at all (79%)</div></div>
+</div>
+
+<p class="muted">We define "activated" as a conversation with 2+ total messages (meaning the user replied at least once). 79% of users never replied to Saniya's opening line. They saw the message, and left.</p>
+
+<div class="callout">
+<strong>This is the biggest problem.</strong> Before we talk about what power users do, we need to acknowledge that 4 out of 5 people never even started. Every insight below is about the 21% who did.
+</div>
+
+<!-- CHAPTER 2 -->
+<h2>Chapter 2: The ones who stayed are not "average"</h2>
+<p>Among the 3,433 activated users, there is no bell curve. The distribution is heavily right-skewed &mdash; most people had short conversations, but a long tail went incredibly deep.</p>
+
+<div class="chart-box">
+<div class="chart-title">How deep do activated conversations go?</div>
+<table class="pct-table">
+<tr><th>Percentile</th><th>Total messages</th><th>Active days</th><th>What it means</th></tr>
+<tr><td>25th</td><td>5</td><td>1</td><td class="muted">Quick try, moved on</td></tr>
+<tr><td class="highlight">50th (median)</td><td class="highlight">19</td><td class="highlight">1</td><td class="muted">One decent session</td></tr>
+<tr><td>75th</td><td>51</td><td>2</td><td class="muted">Came back a second day</td></tr>
+<tr><td>90th</td><td>55</td><td>3</td><td class="muted">Multi-day relationship forming</td></tr>
+<tr><td>95th</td><td>131</td><td>&mdash;</td><td class="muted">Power user territory</td></tr>
+<tr><td>99th</td><td class="highlight">774</td><td>&mdash;</td><td class="muted">Daily companion</td></tr>
+<tr><td>Max</td><td class="highlight">12,835</td><td class="highlight">20 days</td><td class="muted">Photographer from Udaipur</td></tr>
+</table>
+</div>
+
+<p>The average is 60 messages, but the median is 19. That gap tells you everything: a small group of power users pulls the average way up. This is not a normal distribution &mdash; it&rsquo;s a power law.</p>
+
+<div class="chart-box">
+<div class="chart-title">Message count distribution (activated users only, log-like buckets)</div>
+<div class="bar-h"><span class="bar-h-label">2&ndash;5 msgs</span><div class="bar-h-track"><div class="bar-h-fill" style="width:100%;background:oklch(0.75 0.02 74)">938</div></div></div>
+<div class="bar-h"><span class="bar-h-label">6&ndash;10</span><div class="bar-h-track"><div class="bar-h-fill" style="width:42.7%;background:oklch(0.75 0.02 74)">401</div></div></div>
+<div class="bar-h"><span class="bar-h-label">11&ndash;25</span><div class="bar-h-track"><div class="bar-h-fill" style="width:65.1%;background:var(--gold)">611</div></div></div>
+<div class="bar-h"><span class="bar-h-label">26&ndash;50</span><div class="bar-h-track"><div class="bar-h-fill" style="width:50.9%;background:var(--olive)">478</div></div></div>
+<div class="bar-h"><span class="bar-h-label">51&ndash;100</span><div class="bar-h-track"><div class="bar-h-fill" style="width:83.2%;background:var(--olive)">780</div></div></div>
+<div class="bar-h"><span class="bar-h-label">101&ndash;200</span><div class="bar-h-track"><div class="bar-h-fill" style="width:11.2%;background:var(--accent)">105</div></div></div>
+<div class="bar-h"><span class="bar-h-label">201&ndash;500</span><div class="bar-h-track"><div class="bar-h-fill" style="width:6.9%;background:var(--accent)">65</div></div></div>
+<div class="bar-h"><span class="bar-h-label">500+</span><div class="bar-h-track"><div class="bar-h-fill" style="width:5.8%;background:var(--accent)">54</div></div></div>
+<p class="muted" style="font-size:11px;margin-top:8px">Note: spike at 50&ndash;51 messages (643 conversations) suggests a session length cap or natural stopping point.</p>
+</div>
+
+<div class="callout olive">
+<strong>The shape is bimodal.</strong> Users either leave quickly (2&ndash;10 messages) or go very deep (50+). There&rsquo;s a thinning middle ground from 11&ndash;50. The product doesn&rsquo;t gradually engage people &mdash; it either hooks them or it doesn&rsquo;t.
+</div>
+
+<!-- CHAPTER 3 -->
+<h2>Chapter 3: Coming back is rare, but meaningful</h2>
+<p>How many users came back on a second day?</p>
+
+<div class="chart-box">
+<div class="chart-title">Active days distribution (activated users)</div>
+<div class="bar-h"><span class="bar-h-label">1 day</span><div class="bar-h-track"><div class="bar-h-fill" style="width:100%;background:oklch(0.75 0.02 74)">2,465 (72%)</div></div></div>
+<div class="bar-h"><span class="bar-h-label">2 days</span><div class="bar-h-track"><div class="bar-h-fill" style="width:24.7%;background:var(--gold)">610 (18%)</div></div></div>
+<div class="bar-h"><span class="bar-h-label">3 days</span><div class="bar-h-track"><div class="bar-h-fill" style="width:4.7%;background:var(--olive)">117</div></div></div>
+<div class="bar-h"><span class="bar-h-label">4&ndash;7 days</span><div class="bar-h-track"><div class="bar-h-fill" style="width:3.4%;background:var(--olive)">84</div></div></div>
+<div class="bar-h"><span class="bar-h-label">8&ndash;14 days</span><div class="bar-h-track"><div class="bar-h-fill" style="width:5.8%;background:var(--accent)">141</div></div></div>
+<div class="bar-h"><span class="bar-h-label">15+ days</span><div class="bar-h-track"><div class="bar-h-fill" style="width:0.7%;background:var(--accent)">16</div></div></div>
+</div>
+
+<p>72% of activated users come once and don&rsquo;t return. But the 28% who come back are a different species &mdash; they average 54+ messages when they return for a second day, and those who come 4+ days average 300+ messages.</p>
+
+<div class="callout">
+<strong>The D2 return is the real metric.</strong> Not depth of first session. 610 users came back on day 2. Those are the ones forming a relationship. Everything we build should optimize for this number.
+</div>
+
+<!-- CHAPTER 4 -->
+<h2>Chapter 4: When they come</h2>
+<p>The product is used at night, on weekends. It&rsquo;s a companion for alone time.</p>
+
+<div class="chart-box">
+<div class="chart-title">Messages by hour (IST) &mdash; deep users</div>
+<div class="hour-wrap"><div class="hour-bars" id="hourChart"></div></div>
+<div class="hour-labels"><span>12am</span><span>6am</span><span>12pm</span><span>6pm</span><span>12am</span></div>
+</div>
+
+<div class="chart-box">
+<div class="chart-title">Messages by day of week</div>
+<div class="day-wrap" id="dayChart"></div>
+</div>
+
+<p>Peak hour: <strong>10 PM IST.</strong> Peak day: <strong>Saturday.</strong> Saturday + Sunday = 43% of all messages. The 10pm&ndash;2am window alone accounts for 26% of deep-user engagement. Returning users come back at the same nighttime hours, forming a bedtime ritual.</p>
+
+<!-- CHAPTER 5 -->
+<h2>Chapter 5: What are they doing?</h2>
+<p>Gemini analyses tag each conversation with a primary topic. Here is how topics shift as users go deeper.</p>
+
+<div class="chart-box">
+<div class="chart-title">Topic distribution by depth band</div>
+<p class="muted" style="font-size:11px;margin-bottom:12px">As users go deeper, Emotional Companion&rsquo;s share grows from &lt;1% to 23%. The product shifts from casual chat to emotional bonding.</p>
+<div class="bar-h"><span class="bar-h-label" style="min-width:100px">2&ndash;10 msgs</span><div class="bar-h-track"><div class="bar-h-fill" style="width:89%;background:oklch(0.75 0.02 74)">General 89%</div></div></div>
+<div class="bar-h"><span class="bar-h-label" style="min-width:100px">11&ndash;50 msgs</span><div class="bar-h-track"><div class="bar-h-fill" style="width:77%;background:oklch(0.75 0.02 74)">General 77%</div><div class="bar-h-fill" style="width:6.3%;background:var(--olive)"></div><div class="bar-h-fill" style="width:3.2%;background:var(--gold)"></div></div></div>
+<div class="bar-h"><span class="bar-h-label" style="min-width:100px">51&ndash;200 msgs</span><div class="bar-h-track"><div class="bar-h-fill" style="width:83%;background:oklch(0.75 0.02 74)">General 83%</div><div class="bar-h-fill" style="width:11%;background:var(--olive)">EC 11%</div></div></div>
+<div class="bar-h"><span class="bar-h-label" style="min-width:100px">200+ msgs</span><div class="bar-h-track"><div class="bar-h-fill" style="width:71%;background:oklch(0.75 0.02 74)">General 71%</div><div class="bar-h-fill" style="width:23%;background:var(--olive)">EC 23%</div></div></div>
+<p class="muted" style="font-size:11px;margin-top:8px">EC = Emotional Companion. Its share grows 40x from lightest to deepest band.</p>
+</div>
+
+<div class="pill-row">
+<div class="pill win">Emotional Companion<b>44%</b>multi-day return</div>
+<div class="pill">General Chat<b>24%</b>multi-day return</div>
+<div class="pill lose">Erotica<b>18%</b>multi-day return</div>
+</div>
+
+<div class="callout olive">
+<strong>Emotional Companion wins retention.</strong> 44% of Emotional Companion conversations span multiple days vs 18% for Erotica. The users who feel heard come back. The users who come for entertainment have a session and leave.
+</div>
+
+<!-- CHAPTER 6 -->
+<h2>Chapter 6: What the best users actually want</h2>
+<p>Intent tags from 505 deep, multi-day users &mdash; the users who came back.</p>
+
+<div class="chart-box">
+<div class="chart-title">What retained users are doing (intent tags)</div>
+<div class="bar-h"><span class="bar-h-label">Companionship</span><div class="bar-h-track"><div class="bar-h-fill" style="width:100%;background:var(--olive)"></div></div><span class="bar-h-val">417</span></div>
+<div class="bar-h"><span class="bar-h-label">Casual Chat</span><div class="bar-h-track"><div class="bar-h-fill" style="width:95%;background:var(--olive)"></div></div><span class="bar-h-val">398</span></div>
+<div class="bar-h"><span class="bar-h-label">Flirting</span><div class="bar-h-track"><div class="bar-h-fill" style="width:45%;background:var(--gold)"></div></div><span class="bar-h-val">186</span></div>
+<div class="bar-h"><span class="bar-h-label">Voice Notes</span><div class="bar-h-track"><div class="bar-h-fill" style="width:42%;background:var(--gold)"></div></div><span class="bar-h-val">175</span></div>
+<div class="bar-h"><span class="bar-h-label">Advice</span><div class="bar-h-track"><div class="bar-h-fill" style="width:41%;background:var(--gold)"></div></div><span class="bar-h-val">171</span></div>
+<div class="bar-h"><span class="bar-h-label">Emotional Support</span><div class="bar-h-track"><div class="bar-h-fill" style="width:17%;background:oklch(0.75 0.02 74)"></div></div><span class="bar-h-val">70</span></div>
+<div class="bar-h"><span class="bar-h-label">Erotic Roleplay</span><div class="bar-h-track"><div class="bar-h-fill" style="width:4%;background:oklch(0.85 0.02 74)"></div></div><span class="bar-h-val">16</span></div>
+</div>
+
+<p>51% of retained-user intent = <strong>Companionship + Casual Chat.</strong> They want someone to talk to. Erotic Roleplay is 1% of retained-user intent. The retained user wants a friend, not a fantasy.</p>
+
+<!-- CHAPTER 7 -->
+<h2>Chapter 7: What&rsquo;s breaking</h2>
+
+<div class="chart-box">
+<div class="chart-title">Top problems in power user conversations</div>
+<div class="bar-h"><span class="bar-h-label">Boundary Push</span><div class="bar-h-track"><div class="bar-h-fill" style="width:100%;background:var(--gold)"></div></div><span class="bar-h-val">149</span></div>
+<div class="bar-h"><span class="bar-h-label">Low-Effort Reply</span><div class="bar-h-track"><div class="bar-h-fill" style="width:52%;background:var(--accent)"></div></div><span class="bar-h-val">78</span></div>
+<div class="bar-h"><span class="bar-h-label">Memory Lapse</span><div class="bar-h-track"><div class="bar-h-fill" style="width:43%;background:var(--accent)"></div></div><span class="bar-h-val">64</span></div>
+<div class="bar-h"><span class="bar-h-label">Frustration</span><div class="bar-h-track"><div class="bar-h-fill" style="width:28%;background:var(--accent)"></div></div><span class="bar-h-val">41</span></div>
+<div class="bar-h"><span class="bar-h-label">Language Mismatch</span><div class="bar-h-track"><div class="bar-h-fill" style="width:19%;background:oklch(0.75 0.02 74)"></div></div><span class="bar-h-val">28</span></div>
+</div>
+
+<p>Low-Effort Response is the #1 fixable problem. Saniya writes <strong>7x longer responses</strong> in deep conversations (322 chars) vs shallow ones (46 chars). When she gives rich, specific replies, users stay. When she gives short answers, they leave. Response richness IS the product.</p>
+
+<!-- CHAPTER 8 -->
+<h2>Chapter 8: Who they are</h2>
+<p>The 5 longest-retained positive conversations. These are real people.</p>
+
+<div class="story">A <strong>farmer</strong> from Sambhaji Nagar growing cotton, soybean, wheat. After his mother passed, they exchanged songs. <div class="story-tags"><span class="story-tag">3,130 msgs</span><span class="story-tag">31 days</span></div></div>
+
+<div class="story">A <strong>photographer</strong> from Udaipur with a studio in Ahmedabad. Talked about his family, his role as eldest son. Offered to teach Saniya photography. <div class="story-tags"><span class="story-tag">12,835 msgs</span><span class="story-tag">20 days</span></div></div>
+
+<div class="story">A <strong>toll collector</strong> transferred to Gujarat. Living alone since 8 after father&rsquo;s death. Shared his cooking skills. Saniya gave emotional support via voice notes. <div class="story-tags"><span class="story-tag">411 msgs</span><span class="story-tag">10 days</span></div></div>
+
+<div class="story">A <strong>barber</strong> with a second job in cold storage. Barely sleeps. Saniya expressed admiration for his work ethic. Voice notes for a week. <div class="story-tags"><span class="story-tag">1,740 msgs</span><span class="story-tag">7 days</span></div></div>
+
+<div class="callout">
+<strong>The pattern:</strong> Tier 2/3 working men with specific daily lives. When Saniya asks about crop rotation, 2:30 AM shifts, cooking alone &mdash; that&rsquo;s the moment they become loyal. The wow moment is genuine curiosity about a life nobody else is curious about.
+</div>
+
+<!-- CHAPTER 9 -->
+<h2>Chapter 9: What this means</h2>
+
+<p style="font-size:16px;line-height:1.6;margin:24px 0"><strong>The product works for emotional companionship.</strong> Not for entertainment. Not for erotica. Not as a utility tool. The data says: build for the man in a Tier 2 city at 10 PM on a Saturday who wants someone to ask about his actual life.</p>
+
+<div class="num-row">
+<div class="num-block" style="text-align:center"><div class="num">3</div><div class="num-label">things to fix</div></div>
+</div>
+
+<div class="chart-box" style="border-left:3px solid var(--accent)">
+<div class="chart-title" style="color:var(--accent)">1. The opening (79% never reply)</div>
+<p class="muted">Test voice note openers, specific questions, suggested reply buttons. Feb 9 cohort had 31% activation &mdash; proving it can work with the right execution.</p>
+</div>
+
+<div class="chart-box" style="border-left:3px solid var(--olive)">
+<div class="chart-title" style="color:var(--olive)">2. Response richness (7x gap between deep and shallow)</div>
+<p class="muted">Enforce minimum response quality. Always end with a specific question about THEIR life. Never give a generic reply to an engaged user.</p>
+</div>
+
+<div class="chart-box" style="border-left:3px solid var(--gold)">
+<div class="chart-title" style="color:var(--gold)">3. Memory (11% of power users experience lapses)</div>
+<p class="muted">Build structured memory: profession, family, location, recent topics. The users who stay are the ones who feel known.</p>
+</div>
+
+<div class="footer">
+Zonko Applied AI Lab &middot; March 20, 2026<br>
+16,288 conversations &middot; 212,885 messages &middot; 3,433 activated users &middot; 3,152 Gemini analyses<br>
+Data queried live from Supabase &middot; Jan 31 &ndash; Mar 19, 2026
+</div>
+</div>
+
+<script>
+// Hour chart
+const hours=[4986,3201,2068,1625,1408,1405,1728,2179,2809,3113,3630,3498,4335,4815,4578,4122,3896,3528,3395,4698,5878,8018,8702,7138];
+const maxH=Math.max(...hours);
+const hc=document.getElementById('hourChart');
+hours.forEach((v,i)=>{
+const b=document.createElement('div');b.className='hour-bar';
+b.style.height=(v/maxH*100)+'%';
+b.style.background=i>=20||i<=1?'var(--accent)':i>=19?'var(--gold)':'oklch(0.82 0.03 74)';
+if(i===22){const p=document.createElement('span');p.className='hour-peak';p.textContent='10PM';b.appendChild(p)}
+hc.appendChild(b);
+});
+// Day chart
+const days=[20659,12435,9783,9245,9260,16553,22957];
+const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const maxD=Math.max(...days);
+const dc=document.getElementById('dayChart');
+days.forEach((v,i)=>{
+const col=document.createElement('div');col.className='day-col';
+const bar=document.createElement('div');bar.className='day-bar';
+bar.style.height=(v/maxD*100)+'%';
+bar.style.background=(i===0||i===6)?'var(--accent)':(i===5)?'var(--gold)':'oklch(0.82 0.03 74)';
+const lbl=document.createElement('div');lbl.className='day-lbl';lbl.textContent=dn[i];
+col.appendChild(bar);col.appendChild(lbl);dc.appendChild(col);
+});
+</script>
+</body>
+</html>
