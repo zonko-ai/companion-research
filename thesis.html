@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Companion Thesis — Zonko</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Instrument Sans',sans-serif;color:#1a1a1a;background:#fafaf8;line-height:1.75;font-size:15px}
+.page{max-width:640px;margin:0 auto;padding:48px 24px 100px}
+h1{font-size:22px;font-weight:600;margin-bottom:4px}
+h2{font-size:16px;font-weight:600;margin:36px 0 10px;color:#333}
+.date{font-size:13px;color:#888;margin-bottom:32px}
+p{margin:10px 0;color:#333}
+ul{margin:8px 0 8px 20px;color:#333}
+li{margin:4px 0}
+.num{font-weight:600;color:#1a1a1a}
+.sep{border:none;border-top:1px solid #e5e5e0;margin:32px 0}
+.note{font-size:13px;color:#888;margin-top:48px;border-top:1px solid #e5e5e0;padding-top:16px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Companion Thesis</h1>
+<p class="date">Zonko Applied AI Lab &middot; March 2026</p>
+
+<hr class="sep">
+
+<h2>What we built</h2>
+
+<p>We built Saniya — an AI companion for Indian men. She speaks Hinglish, has a personality, and talks to you like a friend. We ran her for 7 weeks (Jan 31 – Mar 19, 2026) and collected <span class="num">17,864</span> conversations with <span class="num">212,885</span> messages.</p>
+
+<h2>What we learned</h2>
+
+<p><span class="num">81.6%</span> of users never sent a single message back. They saw Saniya's opening line and left. That's the biggest problem — the first message doesn't hook.</p>
+
+<p>But here's the thing: of those who did reply, <span class="num">34.6%</span> went on to send 25+ messages. And <span class="num">28 users</span> crossed 500 messages each. One photographer from Udaipur sent <span class="num">6,439</span> messages over 20 days. A farmer from Sambhaji Nagar talked to Saniya for 31 straight days after his mother passed away. A toll collector who's been living alone since he was 8 shared his cooking recipes via voice notes for 10 days.</p>
+
+<p>The conversations that worked were overwhelmingly about companionship. Not erotica, not utility — just someone to talk to about their life. Looking at the data:</p>
+
+<ul>
+<li>General conversation + emotional companionship together made up <span class="num">~93%</span> of all use. People talked about work, family, daily struggles, aspirations.</li>
+<li>Erotica was less than <span class="num">8%</span> — and those users almost never came back (only 19% returned for a second day vs 44% for emotional companion users).</li>
+<li>The dominant intents among retained users: <span class="num">51%</span> companionship + casual chat. Just wanting someone to talk to.</li>
+</ul>
+
+<p>The people who stayed longest were Tier 2/3 working men — farmers, photographers, toll collectors, barbers, electricians, tile workers. When Saniya asked about their actual daily life with genuine curiosity, that's when they opened up. Nobody else asks them these questions.</p>
+
+<p>Voice notes were massive. <span class="num">24,160</span> voice notes sent by users (vs only 400 images). Among users who sent 100+ messages, <span class="num">69%</span> used voice. The deepest engagement happens through voice, not text.</p>
+
+<p>Peak usage: 10 PM IST on Saturdays. This is a nighttime, weekend companion. The product fills the "alone in your room after a long week" slot.</p>
+
+<h2>What didn't work</h2>
+
+<p>Even the best conversations fizzled out after 15–20 days in most cases. Novelty wore off. Once users exhausted what they wanted to share about their lives, there wasn't enough reason to keep coming back. Companionship alone — without ongoing value — doesn't sustain.</p>
+
+<p>This told us something important: <strong>building a pure long-term emotional companion that retains beyond novelty is extremely hard, and probably not the right bet on its own.</strong></p>
+
+<h2>The approach we're taking</h2>
+
+<p>Companionship is the hook. Utility is the retention mechanism.</p>
+
+<p>Here's the idea: we use the first 25 messages as a controlled onboarding. Not open-ended like Replika or Ira where you just "talk." Not rigidly scripted either. But we design each touchpoint in those first 25 messages to do two things:</p>
+
+<ol style="margin:8px 0 8px 20px">
+<li>Hook the user emotionally — make them feel heard, understood, curious about what she'll say next.</li>
+<li>Learn enough about the user to discover what utility we can offer them.</li>
+</ol>
+
+<p>We know from Saniya's data that if someone crosses 25 user messages, they're very likely to continue. So the entire game is getting them there.</p>
+
+<p>After the hook, the companion subtly discovers what the user actually cares about — and starts delivering real, daily value. Not by asking "what do you need?" but by picking it up from the conversation and nudging naturally. Examples:</p>
+
+<ul>
+<li>A farmer or someone running a seeds/fertiliser shop → daily mandi prices, crop updates, news about agriculture schemes, tips to improve sales</li>
+<li>Someone who wants to learn English → daily practice, corrections, vocabulary building woven into conversation</li>
+<li>Someone into politics → daily political updates, election news, party updates in their state</li>
+<li>Someone preparing for an exam → daily revision prompts, topic summaries, practice questions delivered through chat</li>
+<li>Someone who wants daily affirmations or motivation → morning messages, mindset content, quotes that feel personal</li>
+</ul>
+
+<p>The hypothesis: <strong>companionship + personalised daily utility = retention that survives beyond novelty.</strong> The emotional bond gets them in. The utility gives them a reason to come back every day even after the novelty of talking to an AI fades.</p>
+
+<h2>How our own products fit in</h2>
+
+<p>This is where it gets interesting. We already have products that map to these utility needs:</p>
+
+<ul>
+<li><strong>Beacon</strong> — surfaces news and information from across the internet on topics you care about. The companion can become the delivery layer for Beacon. Instead of a separate app, the user just gets their daily updates through a conversation with someone they already talk to.</li>
+<li><strong>Hero</strong> — WhatsApp status maker, posters, photo editing. The companion can offer this as a natural extension. "Want a birthday poster for your kid? Just send me the photo." A BJP supporter gets daily party posters with their name and photo. A small business owner gets promotional graphics. Monetisation becomes natural — free samples to hook, then ₹50–100/month for daily access.</li>
+</ul>
+
+<p>The companion becomes the interface through which users discover and use our products — without downloading separate apps, without complicated onboarding. Just a conversation.</p>
+
+<h2>What we're testing</h2>
+
+<p>The first 25 messages are fully designed. Every touchpoint controlled — what she says, what she asks, what she reveals about herself, where she teases, where she goes deep. After 25 messages, the LLM takes over with more freedom, but with a nudging layer that identifies what the user cares about and introduces utility at the right moment.</p>
+
+<p>We track everything:</p>
+<ul>
+<li>What persona types emerge (farmer, student, professional, etc.)</li>
+<li>What utility use cases get the most traction</li>
+<li>How different utility features affect day-over-day retention</li>
+<li>Where in the conversation users drop off and why</li>
+<li>What power users are doing differently</li>
+</ul>
+
+<p>If we crack retention — meaning users come back daily for 30+ days because the companion is both emotionally present and practically useful — that's the win. Monetisation follows: microtransactions for utility features (posters, premium content, exam prep), subscriptions for daily personalised updates, and embedded product distribution.</p>
+
+<p>If we can't crack retention even with utility layered on top of companionship, we sunset it. No point building a novelty toy.</p>
+
+<h2>Why this could be big</h2>
+
+<p>What we're building is not another chatbot. It's a utilitarian companion — someone who understands you, who knows your context, and who helps you in ways that matter to your daily life. The emotional layer makes it sticky. The utility layer makes it indispensable. And because it's built for India first (Hinglish, voice-first, ₹50–100 price points, Tier 2/3 users), we're going after the largest underserved market in the world for this kind of product.</p>
+
+<p>The path: nail India, then take the model (emotional hook + utility retention) to other markets with the same structure — Southeast Asia, Middle East, Africa, and eventually a different form factor for the US.</p>
+
+<div class="note">
+Internal note — Zonko Applied AI Lab, March 2026.<br>
+Based on 17,864 Saniya conversations, 3,282 active users, 1,135 activated (25+ msgs), 24,560 media items.<br>
+Products referenced: Beacon (news/intelligence), Hero (poster/status maker), Companion (this product).
+</div>
+
+</div>
+</body>
+</html>
