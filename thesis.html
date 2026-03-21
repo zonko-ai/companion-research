@@ -8,18 +8,18 @@
 <style>
 :root{--ink:oklch(0.23 0.03 32);--ink-soft:oklch(0.37 0.03 30);--line:oklch(0.81 0.03 58);--accent:oklch(0.61 0.2 27);--olive:oklch(0.56 0.09 124);--gold:oklch(0.77 0.13 84);--display:"Fraunces","Georgia",serif;--body:"Instrument Sans","Helvetica Neue",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--body);color:var(--ink);background:linear-gradient(180deg,#f7f0e6,#f2e7d7);line-height:1.75;font-size:14.5px}
-.page{max-width:600px;margin:0 auto;padding:52px 24px 100px}
-h1{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.3px}
+body{font-family:var(--body);color:var(--ink);background:linear-gradient(180deg,#f7f0e6,#f2e7d7);line-height:1.7;font-size:14.5px}
+.page{max-width:620px;margin:0 auto;padding:52px 24px 100px}
+h1{font-family:var(--display);font-size:24px;font-weight:700;letter-spacing:-.3px}
+h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin:40px 0 8px}
 .date{font-size:12px;color:var(--ink-soft);margin-bottom:28px}
-.sep{border:none;height:1px;background:var(--line);margin:28px 0}
-p{margin:10px 0;color:var(--ink)}
+.sep{border:none;height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin:24px 0;opacity:.3}
+p{margin:8px 0;color:var(--ink)}
 ul,ol{margin:6px 0 6px 18px;color:var(--ink)}
-li{margin:4px 0}
+li{margin:3px 0}
 b{color:var(--ink)}
-.hl{color:var(--accent);font-weight:600}
-em{font-style:normal;color:var(--ink-soft)}
-.note{font-size:11px;color:var(--ink-soft);margin-top:52px;border-top:1px solid var(--line);padding-top:14px}
+strong{color:var(--accent)}
+.note{font-size:11px;color:var(--ink-soft);margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
 @media print{body{background:#fff}}
 </style>
 </head>
@@ -30,73 +30,73 @@ em{font-style:normal;color:var(--ink-soft)}
 <p class="date">Zonko Applied AI Lab &middot; March 2026</p>
 <hr class="sep">
 
-<p>We built Saniya. AI companion, Hinglish, female persona. Ran her for 7 weeks. 17,864 conversations, 212k messages.</p>
+<h2>What Saniya taught us</h2>
 
-<p>81.6% of users never replied to the first message. Just didn't care. But here's the thing — of the ones who did reply, 34.6% sent 25+ messages. 28 users crossed 500. One guy from Udaipur (photographer) sent 6,439 messages in 20 days. A farmer talked to her for 31 days straight after his mother died. A toll collector who's lived alone since he was 8 sent cooking recipes via voice notes for 10 days.</p>
+<p>We built Saniya, an AI companion. Hinglish-speaking, female persona, ran for 7 weeks. <b>17,864</b> conversations, <b>212,885</b> messages.</p>
 
-<p>~93% of conversations were about companionship. Work, family, daily life, aspirations. Erotica was less than 8% — and those users barely came back (19% return vs 44% for emotional companion users). The people who actually stayed were Tier 2/3 working men. Farmers, barbers, electricians, photographers. When Saniya asked about their actual life with real curiosity, they opened up. Nobody else asks them these questions.</p>
+<p><b>81.6%</b> never replied. Opening didn't hook. But of those who did reply, <b>34.6%</b> sent 25+ messages. <b>28</b> users crossed 500. One sent <b>6,439</b> messages in 20 days.</p>
 
-<p>Media mattered. 24,160 voice notes, 400 images. 69% of power users sent some kind of media. We're not going voice-first, but we need to figure out which media types are the real engagement levers — that's something we'll explore.</p>
+<p><b>~93%</b> of conversations were companionship — work, family, struggles, aspirations. Erotica was <b>&lt;8%</b>, and those users almost never came back (19% return vs 44% for emotional companion). The people who stayed: Tier 2/3 working men — farmers, toll collectors, barbers, photographers. When Saniya asked about their actual life, they opened up. Nobody else asks them.</p>
 
-<p>Peak usage: 10 PM on Saturdays. This is a nighttime thing. Alone after a long week.</p>
+<p>Media was a strong engagement signal. <b>24,160</b> voice notes and 400 images sent by users. <b>69%</b> of power users used some form of media. We're not building voice-first, but we'll explore multimodality to find which specific media types (voice notes, images, audio) are the engagement levers. Peak usage: 10 PM Saturday — a nighttime companion for men alone after a long week.</p>
 
-<hr class="sep">
+<h2>What didn't work</h2>
 
-<p>What didn't work: even the best conversations fizzled after 15–20 days. Novelty wore off. Once someone had shared their life story, there wasn't a reason to come back the next day. <span class="hl">Companionship alone doesn't retain beyond novelty.</span> That's the core learning.</p>
+<p>Even the best conversations fizzled after 15–20 days. Novelty wore off. Once they'd shared their life, there wasn't enough reason to come back. <strong>Companionship alone doesn't retain beyond novelty.</strong></p>
 
-<hr class="sep">
-
-<p>So here's what we're doing now.</p>
+<h2>The approach</h2>
 
 <p>Companionship is the hook. Utility is the retention.</p>
 
-<p>The first 25 messages are the whole game. We know from the data that if someone crosses 25 user messages, they're very likely to keep going. So we're designing those 25 messages deliberately. Not fully open-ended like Replika or Ira where you just... talk. But not rigidly scripted either. We control each touchpoint while leaving room for the conversation to feel natural.</p>
+<p>First 25 messages are controlled — not open-ended like Replika or Ira, not rigidly scripted either. We control each touchpoint but leave room for the conversation to breathe. Data shows: cross 25 user messages → very likely to continue. The game is getting them there.</p>
 
-<p>In those 25 messages, we need to learn 2 things:</p>
+<p>During those 25 messages, we need to learn <b>3 things</b> about the user:</p>
 <ol>
-<li>Why he's here — what made him download the app (lonely, bored, curious, saw an ad, wants a girlfriend, wants someone to talk to at night)</li>
-<li>What he genuinely cares about or enjoys (cricket, politics, farming, music, fitness, exams, his job, a girl he likes)</li>
+<li>Why is he here — what motivated him to download the app</li>
+<li>What does he genuinely care about or enjoy</li>
+<li><i>(Third dimension still being locked — likely life context: work, location, stage of life)</i></li>
 </ol>
 
-<p>And we deliver 3–4 delights. Moments where the user goes "oh wait, this is different." We have a rough sense of what those are but need to spec them out properly. The point is — before we write a single line of code, we know how we're solving the first 25 messages.</p>
+<p>And we deliver <b>3–4 delights</b> — moments that make the user think "this is different." We have a rough sense of what these are but need to spec them out before we start building. The point is: before writing a single line of code, we know how we're solving the first 25 messages.</p>
 
-<p>After that, the LLM gets more room. But there's a nudging layer underneath that picks up what the user cares about and starts introducing utility — not by asking "what do you need" but by figuring it out from the conversation and sliding it in naturally. Like:</p>
+<p>After that, the LLM gets more freedom — but with a nudging layer that subtly discovers what the user cares about and introduces utility at the right moment. Not by asking "what do you need?" but by picking it up from conversation:</p>
 <ul>
-<li>Someone who farms or runs a seed shop — daily mandi prices, crop updates, govt schemes</li>
-<li>Someone who wants to learn English — practice woven into regular conversation</li>
-<li>Someone into politics — daily updates about their state, their party</li>
-<li>Someone prepping for an exam — revision prompts, topic summaries through chat</li>
-<li>Someone who wants a birthday poster for their kid — "just send me the photo" and she makes it</li>
+<li>Farmer → daily mandi prices, crop updates, agriculture schemes</li>
+<li>Wants to learn English → daily practice woven into chat</li>
+<li>Into politics → daily political updates in their state</li>
+<li>Preparing for exam → revision prompts, topic summaries</li>
+<li>Wants motivation → personalised morning messages</li>
+<li>Wants a birthday poster → "send me the photo" → companion creates and shares it</li>
 </ul>
 
-<p><span class="hl">Core hypothesis: companionship + daily utility = retention that survives novelty.</span> The emotional bond gets them in the door. The utility gives them a reason to come back when the charm of talking to an AI wears off.</p>
+<p><strong>Hypothesis: companionship + daily utility = retention beyond novelty.</strong> Emotional bond gets them in. Utility gives them a reason to come back when the novelty fades.</p>
 
-<hr class="sep">
+<h2>Our products fit naturally</h2>
 
-<p>The nice thing is — we already have products that plug in here.</p>
+<p><b>Beacon</b> — surfaces news and information you care about. The companion becomes Beacon's delivery layer. Instead of a separate app, daily updates arrive through someone you already talk to.</p>
 
-<p><b>Beacon</b> surfaces news and info on topics you care about. Instead of a separate app, the companion just becomes Beacon's delivery layer. Your daily updates come from someone you already talk to.</p>
+<p><b>Hero</b> — WhatsApp status maker, posters, photo editing. "Want a BJP poster with your photo?" Free samples to hook, ₹50–100/month for daily access. A small business owner gets promotional graphics through the companion. No separate app, no onboarding. Just conversation.</p>
 
-<p><b>Hero</b> makes WhatsApp posters, status images, photo edits. A BJP supporter gets daily party posters with his name and photo. A small business gets promotional graphics. Free ones to hook, ₹50–100/month after that. No separate app, no onboarding. Just "want this? send me the photo."</p>
+<p>The companion is the interface for all of Zonko's products.</p>
 
-<p>The companion becomes the front door for everything Zonko builds.</p>
+<h2>What we're testing</h2>
 
-<hr class="sep">
+<p>First 25 messages: fully designed. After that, LLM gets freedom but with a nudging layer that introduces utility at the right moment.</p>
 
-<p>What we're actually tracking: persona types that emerge, which utility features get traction, how retention changes feature by feature, where people drop off, what power users do differently. It's both a product and a consumer insights engine.</p>
+<p>We track: persona types, utility traction, retention by feature, drop-off points, power user patterns. This gives us both product signal and consumer insight at scale.</p>
 
-<p><span class="hl">Retention is the only thing that matters right now.</span> We don't have a specific number yet but that's the north star. If we can get people coming back consistently — because the companion is both emotionally there and practically useful — everything else follows. Monetisation, distribution, scale.</p>
+<p><strong>Primary focus: retention.</strong> We don't have a specific number target yet, but retention is the north star. If we can get users coming back consistently because the companion is both emotionally present and practically useful — that's the win. Monetisation follows from there.</p>
 
-<p>If we can't crack retention even with utility on top of companionship — we sunset it. No point building a novelty toy.</p>
+<p><strong>Kill condition:</strong> can't crack retention even with utility on top of companionship. We sunset it.</p>
 
-<hr class="sep">
+<h2>Why this could be big</h2>
 
-<p>What we're actually building: a utilitarian companion. Someone who gets you, knows your context, and does something useful for you every day. Not another chatbot. The emotional layer makes it sticky. The utility layer makes it indispensable.</p>
+<p>Not another chatbot. A utilitarian companion — understands you, knows your context, helps you daily. Emotional layer makes it sticky. Utility layer makes it indispensable. Built for India first: Hinglish, ₹50–100 pricing, Tier 2/3 users.</p>
 
 <div class="note">
-Zonko Applied AI Lab, March 2026<br>
-Based on 17,864 Saniya conversations, 3,282 active users, 1,135 activated (25+ msgs), 24,560 media items<br>
-Products referenced: Beacon (news/intelligence), Hero (poster/status maker)
+Internal note — Zonko Applied AI Lab, March 2026<br>
+17,864 conversations &middot; 3,282 active users &middot; 1,135 activated (25+ msgs) &middot; 24,560 media items<br>
+Products: Beacon (news/intelligence) &middot; Hero (poster/status maker) &middot; Companion (this)
 </div>
 
 </div>
