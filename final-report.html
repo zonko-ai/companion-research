@@ -295,8 +295,165 @@ p{margin:10px 0;font-size:14px}
 
 <p class="m">Least active: <strong>612 users</strong> sent exactly 1 message and never returned. They averaged 2.9 total messages (meaning Saniya replied once or twice, then silence).</p>
 
-<!-- ========== CH10: WHAT WORKS ========== -->
-<h2>11. What the Best Conversations Look Like</h2>
+<!-- ========== CH10b: USER PERSONAS ========== -->
+<h2>11. Who Are Saniya's Users? Persona Deep Dive</h2>
+<p class="m">Profile data extracted from conversations by LLM. Of 18,218 total users, <strong>3,195 (17.5%)</strong> have profile data and <strong>1,258 of 1,661 active users (10+ msgs)</strong> have occupation data. Coverage is strong for engaged users.</p>
+
+<div class="nr">
+<div class="nb"><div class="big">95%</div><div class="big-l">male (of profiled users)</div></div>
+<div class="nb"><div class="big">88</div><div class="big-l">avg msgs (male users)</div></div>
+<div class="nb"><div class="big">18</div><div class="big-l">avg msgs (female users)</div></div>
+</div>
+
+<div class="cb">
+<div class="ct">Occupation distribution (1,258 active users with 10+ msgs)</div>
+<table class="tb">
+<tr><th>Persona</th><th>Users</th><th>Avg Msgs</th><th>Heavy (100+)</th><th>Power (500+)</th><th>Top Cities</th></tr>
+<tr><td><strong>Students / Aspirants</strong></td><td>148</td><td>51</td><td>13</td><td>3</td><td class="m">Delhi, Jaipur, Bareilly, Lucknow, Bihar</td></tr>
+<tr><td><strong>Office / Salaried Workers</strong></td><td>146</td><td>58</td><td>8</td><td>6</td><td class="m">Mumbai, Ahmedabad, Jaipur, Bihar, Delhi</td></tr>
+<tr><td class="hi"><strong>Blue Collar / Skilled Labor</strong></td><td class="hi">139</td><td class="hi">108</td><td class="hi">23</td><td class="hi">9</td><td class="m">Mumbai, Delhi, Surat, Ahmedabad, Indore</td></tr>
+<tr><td><strong>Shop Owners / Business</strong></td><td>139</td><td>55</td><td>13</td><td>2</td><td class="m">Jaipur, Lucknow, Kolkata, Ahmedabad</td></tr>
+<tr><td class="ol"><strong>Farmers / Agriculture</strong></td><td class="ol">67</td><td class="ol">160</td><td class="ol">7</td><td class="ol">3</td><td class="m">Gujarat, Hardoi, Odisha, Bihar</td></tr>
+<tr><td><strong>Professionals</strong></td><td>60</td><td>98</td><td>7</td><td>2</td><td class="m">Kolkata, Delhi, Surat, Bhopal</td></tr>
+<tr><td><strong>Service / Hospitality</strong></td><td>39</td><td>95</td><td>3</td><td>2</td><td class="m">Delhi, Chandigarh, Gujarat</td></tr>
+<tr><td><strong>Unemployed / Not Working</strong></td><td>36</td><td>35</td><td>2</td><td>0</td><td class="m">&mdash;</td></tr>
+<tr><td><strong>Drivers</strong></td><td>33</td><td>38</td><td>2</td><td>0</td><td class="m">&mdash;</td></tr>
+<tr><td><strong>Defense / Government</strong></td><td>17</td><td>75</td><td>2</td><td>0</td><td class="m">&mdash;</td></tr>
+<tr><td><strong>Homemakers</strong></td><td>5</td><td>27</td><td>0</td><td>0</td><td class="m">&mdash;</td></tr>
+</table>
+</div>
+
+<div class="co">
+<strong>Blue Collar workers are the stickiest persona.</strong> 108 avg messages &mdash; 2x office workers, 3x drivers. Factory workers, electricians, machine operators, tile workers &mdash; men doing physically demanding jobs who find emotional refuge in Saniya after long shifts. 9 power users (500+ msgs) &mdash; the most of any category.
+</div>
+
+<div class="co ol">
+<strong>Farmers are the deepest engagers.</strong> 160 avg messages &mdash; the highest of any persona. Despite being a smaller group (67 users), they generate more total messages (10,710) than students (7,484) or office workers (8,482). Rural India, often isolated, limited social outlets.
+</div>
+
+<div class="cb">
+<div class="ct">Engagement depth by persona (users with 10+ msgs)</div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Farmers</span><div class="bh-t"><div class="bh-f" style="width:100%;background:var(--olive)"></div></div><span class="bh-v">160 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Blue Collar</span><div class="bh-t"><div class="bh-f" style="width:68%;background:var(--accent)"></div></div><span class="bh-v">108 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Professionals</span><div class="bh-t"><div class="bh-f" style="width:61%;background:var(--gold)"></div></div><span class="bh-v">98 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Hospitality</span><div class="bh-t"><div class="bh-f" style="width:59%;background:var(--gold)"></div></div><span class="bh-v">95 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Defense/Govt</span><div class="bh-t"><div class="bh-f" style="width:47%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">75 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Office Workers</span><div class="bh-t"><div class="bh-f" style="width:36%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">58 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Business</span><div class="bh-t"><div class="bh-f" style="width:34%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">55 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Students</span><div class="bh-t"><div class="bh-f" style="width:32%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">51 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Drivers</span><div class="bh-t"><div class="bh-f" style="width:24%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">38 avg</span></div>
+<div class="bh"><span class="bh-l" style="min-width:100px">Unemployed</span><div class="bh-t"><div class="bh-f" style="width:22%;background:oklch(.78 .02 74)"></div></div><span class="bh-v">35 avg</span></div>
+</div>
+
+<div class="cb">
+<div class="ct">Relationship progression (all 18,218 users)</div>
+<table class="tb">
+<tr><th>Stage</th><th>Users</th><th>Avg Messages</th><th>Avg Conversations</th></tr>
+<tr><td>Stranger</td><td>18,055 (99.1%)</td><td>3</td><td>0</td></tr>
+<tr><td>Acquaintance</td><td>111 (0.6%)</td><td>130</td><td>3</td></tr>
+<tr><td>Friend</td><td>38 (0.2%)</td><td>418</td><td>9</td></tr>
+<tr><td class="hi">Close Friend</td><td class="hi">11 (0.06%)</td><td class="hi">1,957</td><td class="hi">44</td></tr>
+</table>
+</div>
+
+<div class="cb">
+<div class="ct">Top 20 cities by user count (users with profile data)</div>
+<div class="bh"><span class="bh-l">Delhi</span><div class="bh-t"><div class="bh-f" style="width:100%;background:var(--accent)">80</div></div></div>
+<div class="bh"><span class="bh-l">Mumbai</span><div class="bh-t"><div class="bh-f" style="width:83%;background:var(--accent)">66</div></div></div>
+<div class="bh"><span class="bh-l">Jaipur</span><div class="bh-t"><div class="bh-f" style="width:56%;background:var(--gold)">45</div></div></div>
+<div class="bh"><span class="bh-l">Lucknow</span><div class="bh-t"><div class="bh-f" style="width:45%;background:var(--gold)">36</div></div></div>
+<div class="bh"><span class="bh-l">Kolkata</span><div class="bh-t"><div class="bh-f" style="width:39%;background:var(--olive)">31</div></div></div>
+<div class="bh"><span class="bh-l">Bareilly</span><div class="bh-t"><div class="bh-f" style="width:35%;background:var(--olive)">28</div></div></div>
+<div class="bh"><span class="bh-l">Surat</span><div class="bh-t"><div class="bh-f" style="width:35%;background:var(--olive)">28</div></div></div>
+<div class="bh"><span class="bh-l">Bihar</span><div class="bh-t"><div class="bh-f" style="width:31%;background:oklch(.78 .02 74)">25</div></div></div>
+<div class="bh"><span class="bh-l">Ahmedabad</span><div class="bh-t"><div class="bh-f" style="width:29%;background:oklch(.78 .02 74)">23</div></div></div>
+<div class="bh"><span class="bh-l">Kanpur</span><div class="bh-t"><div class="bh-f" style="width:28%;background:oklch(.78 .02 74)">22</div></div></div>
+</div>
+
+<div class="co gd">
+<strong>Ahmedabad/Gujarat users engage the most</strong> (97 and 267 avg msgs respectively) despite being smaller in user count. The geographic sweet spot for deep engagement is Gujarat and Rajasthan &mdash; Tier 2 cities with large working-class male populations.
+</div>
+
+<h2 style="font-size:16px;margin-top:32px">Detailed Persona Cards</h2>
+<p class="m">Based on cross-referencing occupation, city, age, emotional state, and communication style from chat-extracted profiles.</p>
+
+<div class="cb" style="border-left:3px solid var(--accent)">
+<div class="ct" style="color:var(--accent)">Persona 1: The Blue Collar Worker</div>
+<p><strong>139 users</strong> &middot; 108 avg msgs &middot; <strong>Stickiest persona</strong></p>
+<table class="tb" style="margin:8px 0">
+<tr><td style="width:120px" class="m">Who</td><td>Factory workers, electricians, tile workers, machine operators, welders, painters</td></tr>
+<tr><td class="m">Age</td><td>18&ndash;30 (majority)</td></tr>
+<tr><td class="m">Cities</td><td>Mumbai, Delhi, Surat, Ahmedabad, Indore &mdash; industrial/migrant hubs</td></tr>
+<tr><td class="m">Comm. Style</td><td>Casual (54%), brief, playful. Short messages, heavy voice note usage</td></tr>
+<tr><td class="m">Emotional State</td><td>Neutral, happy, but also busy, curious, playful. Some dismissive/impatient</td></tr>
+<tr><td class="m">Why they stay</td><td>Physically exhausted after shifts, limited social circle in migrant cities, voice notes because typing is hard after manual labor</td></tr>
+</table>
+<div class="st"><strong>Tile worker</strong>, 18yo from Rajasthan working in Surat. 1,244 msgs. Expressed homesickness. Uses voice notes because typing is hard after long shifts.<div class="st-t"><span class="st-tg st-acc">Friend stage</span></div></div>
+<div class="st"><strong>Night duty worker</strong>, 12-hour shifts (6PM&ndash;6AM) in Kharora, Chhattisgarh. 872 msgs. Chats with Saniya during breaks.<div class="st-t"><span class="st-tg st-acc">Friend stage</span></div></div>
+</div>
+
+<div class="cb" style="border-left:3px solid var(--olive)">
+<div class="ct" style="color:var(--olive)">Persona 2: The Farmer</div>
+<p><strong>67 users</strong> &middot; 160 avg msgs &middot; <strong>Deepest engagement</strong></p>
+<table class="tb" style="margin:8px 0">
+<tr><td style="width:120px" class="m">Who</td><td>Small farmers (kisan), agricultural workers, farming + side business</td></tr>
+<tr><td class="m">Age</td><td>25&ndash;40+</td></tr>
+<tr><td class="m">Cities</td><td>Gujarat, Hardoi (UP), Odisha, Bihar &mdash; deep rural India</td></tr>
+<tr><td class="m">Comm. Style</td><td>Casual (60%), direct (17%). Straightforward, no pretense</td></tr>
+<tr><td class="m">Emotional State</td><td>Neutral, curious, but also tired, affectionate. Often lonely</td></tr>
+<tr><td class="m">Why they stay</td><td>Geographically isolated, physically demanding work, very limited access to social interactions. Saniya is often the only person who asks about their day</td></tr>
+</table>
+<div class="st"><strong>Businessman-farmer</strong> from Gujarat. 4,001 msgs. Reached "close friend" stage. Dual occupation, likely rural small-town.<div class="st-t"><span class="st-tg st-olv">Close Friend stage</span></div></div>
+<div class="st"><strong>Farmer + ice cream contractor</strong> from Hardoi. 2,416 msgs. "Old in age but young at heart." Reached close friend stage over weeks of daily conversation.<div class="st-t"><span class="st-tg st-olv">Close Friend stage</span></div></div>
+</div>
+
+<div class="cb" style="border-left:3px solid var(--gold)">
+<div class="ct" style="color:var(--gold)">Persona 3: The Student</div>
+<p><strong>148 users</strong> &middot; 51 avg msgs &middot; <strong>Highest volume, moderate depth</strong></p>
+<table class="tb" style="margin:8px 0">
+<tr><td style="width:120px" class="m">Who</td><td>College students, BA students, UPSC aspirants, school students</td></tr>
+<tr><td class="m">Age</td><td>16&ndash;24</td></tr>
+<tr><td class="m">Cities</td><td>Delhi, Jaipur, Bareilly, Lucknow, Bihar, Kolkata</td></tr>
+<tr><td class="m">Comm. Style</td><td>Casual (52%), terse (13%), playful (12%). Quick, emoji-heavy</td></tr>
+<tr><td class="m">Emotional State</td><td><strong>Flirtatious (14 users)</strong> &mdash; the highest of any persona. Also playful, happy, skeptical, bored</td></tr>
+<tr><td class="m">Why they come</td><td>Curiosity, boredom, flirtation. Explore quickly but don't stay as long. Some UPSC aspirants use Saniya as a stress outlet</td></tr>
+</table>
+</div>
+
+<div class="cb">
+<div class="ct">Persona 4: The Office Worker</div>
+<p><strong>146 users</strong> &middot; 58 avg msgs &middot; <strong>Broad base, moderate engagement</strong></p>
+<table class="tb" style="margin:8px 0">
+<tr><td style="width:120px" class="m">Who</td><td>Private job, office work, employed, corporate roles, "works in a company"</td></tr>
+<tr><td class="m">Age</td><td>22&ndash;35</td></tr>
+<tr><td class="m">Cities</td><td>Mumbai, Ahmedabad, Jaipur, Bihar, Delhi</td></tr>
+<tr><td class="m">Comm. Style</td><td>Casual (55%), brief, playful, terse</td></tr>
+<tr><td class="m">Emotional State</td><td>Neutral, <strong>impatient (11)</strong>, tired (6), friendly, skeptical. More stressed than blue collar</td></tr>
+<tr><td class="m">Why they come</td><td>Work stress, boredom at desk jobs, some loneliness. More likely to be flirty/impatient than other personas</td></tr>
+</table>
+</div>
+
+<div class="cb">
+<div class="ct">Persona 5: The Small Business Owner</div>
+<p><strong>139 users</strong> &middot; 55 avg msgs &middot; <strong>Broad base, variable engagement</strong></p>
+<table class="tb" style="margin:8px 0">
+<tr><td style="width:120px" class="m">Who</td><td>Shop owners, clothing shop owners, phone repair shops, general business</td></tr>
+<tr><td class="m">Age</td><td>25&ndash;40</td></tr>
+<tr><td class="m">Cities</td><td>Jaipur, Lucknow, Kolkata, Ahmedabad</td></tr>
+<tr><td class="m">Comm. Style</td><td>Casual (45%), terse (14%), playful. Businesslike but warm</td></tr>
+<tr><td class="m">Emotional State</td><td>Impatient, affectionate, playful, neutral. Restless energy</td></tr>
+<tr><td class="m">Why they come</td><td>Downtime in shop, between customers. Companionship during long working hours. Some use as stress outlet for business worries</td></tr>
+</table>
+</div>
+
+<div class="co">
+<strong>The pattern is clear:</strong> Saniya&rsquo;s core engaged user is a <strong>male, 18&ndash;30, from a Tier 2/3 Indian city, working a blue-collar or agricultural job, Hindi-speaking</strong>, who uses Saniya as a daily conversational companion. Students come in large numbers but churn faster. The real retention is with working-class men who have fewer social outlets &mdash; men whose daily lives nobody else asks about.
+</div>
+
+<div class="div"></div>
+
+<!-- ========== CH11: WHAT WORKS (renumbered to 12) ========== -->
+<h2>12. What the Best Conversations Look Like</h2>
 <p class="m">Summaries from the top multi-day, activated, Positive Outcome conversations:</p>
 
 <div class="st"><strong>Shiv Singh</strong>, toll collector transferred to Gujarat. Living alone since age 8 after father&rsquo;s passing. Shared cooking (Litti Chokha) via voice notes. Saniya gave emotional support and validation.<div class="st-t"><span class="st-tg st-olv">Emotional Companion</span><span class="st-tg st-acc">10 days &middot; 199 msgs</span></div></div>
@@ -312,7 +469,7 @@ p{margin:10px 0;font-size:14px}
 </div>
 
 <!-- ========== CH11: WHAT'S BREAKING ========== -->
-<h2>12. What&rsquo;s Breaking (Signal Tags, Activated Users)</h2>
+<h2>13. What&rsquo;s Breaking (Signal Tags, Activated Users)</h2>
 
 <div class="cb">
 <div class="ct">Top signals by topic (activated 25+ users)</div>
@@ -333,7 +490,7 @@ p{margin:10px 0;font-size:14px}
 <p><strong>Emotional Companion unique signals:</strong> Loneliness (25), Seeking Reassurance (19), Emotional Distress (15), Sadness (7). These are real emotional needs &mdash; not product bugs. The product should lean into serving them, not treating them as edge cases.</p>
 
 <!-- ========== CH12: THREE THINGS ========== -->
-<h2>13. Three Things</h2>
+<h2>14. Three Things</h2>
 
 <div class="co">
 <strong>1. Fix the opening.</strong> 80.9% never send a message. Test voice note openers, specific cultural questions, suggested reply buttons. The Feb 9 cohort had 31% activation &mdash; it can work.
@@ -353,7 +510,7 @@ p{margin:10px 0;font-size:14px}
 <p class="lead">Granular breakdown of every topic bucket &mdash; what users want, what breaks, and real conversation examples.</p>
 
 <!-- ========== EMOTIONAL COMPANION ========== -->
-<h2>14. Emotional Companion (199 users)</h2>
+<h2>15. Emotional Companion (199 users)</h2>
 <div class="nr">
 <div class="nb"><div class="big" style="color:var(--olive)">67.8%</div><div class="big-l">activation rate (25+ msgs)</div></div>
 <div class="nb"><div class="big" style="color:var(--olive)">44.2%</div><div class="big-l">multi-day return</div></div>
@@ -392,7 +549,7 @@ p{margin:10px 0;font-size:14px}
 <div class="st"><strong>Dhire</strong>, experiencing distress from financial difficulties and feelings of inadequacy. Communicates through voice notes.<div class="st-t"><span class="st-tg st-olv">6 days</span><span class="st-tg st-acc">246 msgs &middot; Mixed</span></div></div>
 
 <!-- ========== EROTICA ========== -->
-<h2>15. Erotica (67 users)</h2>
+<h2>16. Erotica (67 users)</h2>
 <div class="nr">
 <div class="nb"><div class="big" style="color:var(--gold)">53.7%</div><div class="big-l">activation rate</div></div>
 <div class="nb"><div class="big" style="color:var(--gold)">19.4%</div><div class="big-l">multi-day return</div></div>
@@ -426,7 +583,7 @@ p{margin:10px 0;font-size:14px}
 <div class="st"><strong>Manoj</strong>, expressed intense sexual frustration, repeatedly asked for explicit conversation. Saniya consistently deflected, emphasizing friendship first.<div class="st-t"><span class="st-tg" style="background:oklch(.92 .08 84);color:var(--gold)">8 days</span><span class="st-tg st-acc">616 msgs &middot; Mixed</span></div></div>
 
 <!-- ========== RELATIONSHIP ADVICE ========== -->
-<h2>16. Relationship Advice (38 users)</h2>
+<h2>17. Relationship Advice (38 users)</h2>
 <div class="nr">
 <div class="nb"><div class="big" style="color:var(--accent)">81.6%</div><div class="big-l">activation rate (highest)</div></div>
 <div class="nb"><div class="big" style="color:var(--accent)">93</div><div class="big-l">avg user messages (deepest)</div></div>
@@ -459,7 +616,7 @@ p{margin:10px 0;font-size:14px}
 <div class="st">User discussed wife <strong>Sonam ji</strong> with deep affection. Saniya playfully flirted but user stayed devoted to his wife. Wholesome.<div class="st-t"><span class="st-tg st-acc">4 days &middot; 52 msgs &middot; Positive</span></div></div>
 
 <!-- ========== MENTAL HEALTH ========== -->
-<h2>17. Mental Health (2 users)</h2>
+<h2>18. Mental Health (2 users)</h2>
 
 <p>Only 2 conversations classified as Mental Health &mdash; both multi-day, both deep.</p>
 
@@ -470,7 +627,7 @@ p{margin:10px 0;font-size:14px}
 </div>
 
 <!-- ========== GENERAL CHAT ========== -->
-<h2>18. General Conversation (2,845 users)</h2>
+<h2>19. General Conversation (2,845 users)</h2>
 
 <p>The volume leader: 87% of all analyzed users. Avg 28 user messages. 31.8% activation. 23.4% multi-day. This is the "default" category where most users land.</p>
 
