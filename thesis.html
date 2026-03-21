@@ -38,7 +38,7 @@ strong{color:var(--accent)}
 
 <p><b>~93%</b> of conversations were companionship — work, family, struggles, aspirations. Erotica was <b>&lt;8%</b>, and those users almost never came back (19% return vs 44% for emotional companion). The people who stayed: Tier 2/3 working men — farmers, toll collectors, barbers, photographers. When Saniya asked about their actual life, they opened up. Nobody else asks them.</p>
 
-<p>Voice dominated. <b>24,160</b> voice notes vs 400 images. <b>69%</b> of power users used voice. Peak: 10 PM Saturday. This is a nighttime companion for men alone after a long week.</p>
+<p>Media was a strong engagement signal. <b>24,160</b> voice notes and 400 images sent by users. <b>69%</b> of power users used some form of media. We're not building voice-first, but we'll explore multimodality to find which specific media types (voice notes, images, audio) are the engagement levers. Peak usage: 10 PM Saturday — a nighttime companion for men alone after a long week.</p>
 
 <h2>What didn't work</h2>
 
@@ -48,15 +48,18 @@ strong{color:var(--accent)}
 
 <p>Companionship is the hook. Utility is the retention.</p>
 
-<p>First 25 messages are controlled — not open-ended like Replika, not scripted either. Each touchpoint designed to:</p>
+<p>First 25 messages are controlled — not open-ended like Replika or Ira, not rigidly scripted either. We control each touchpoint but leave room for the conversation to breathe. Data shows: cross 25 user messages → very likely to continue. The game is getting them there.</p>
+
+<p>During those 25 messages, we need to learn <b>3 things</b> about the user:</p>
 <ol>
-<li>Hook emotionally — feel heard, curious, wanting more</li>
-<li>Learn enough to discover what utility to offer</li>
+<li>Why is he here — what motivated him to download the app</li>
+<li>What does he genuinely care about or enjoy</li>
+<li><i>(Third dimension still being locked — likely life context: work, location, stage of life)</i></li>
 </ol>
 
-<p>Data shows: cross 25 messages → very likely to continue. The game is getting them there.</p>
+<p>And we deliver <b>3–4 delights</b> — moments that make the user think "this is different." We have a rough sense of what these are but need to spec them out before we start building. The point is: before writing a single line of code, we know how we're solving the first 25 messages.</p>
 
-<p>After the hook, the companion discovers what the user cares about and delivers daily value — not by asking, but by picking it up from conversation:</p>
+<p>After that, the LLM gets more freedom — but with a nudging layer that subtly discovers what the user cares about and introduces utility at the right moment. Not by asking "what do you need?" but by picking it up from conversation:</p>
 <ul>
 <li>Farmer → daily mandi prices, crop updates, agriculture schemes</li>
 <li>Wants to learn English → daily practice woven into chat</li>
@@ -82,15 +85,13 @@ strong{color:var(--accent)}
 
 <p>We track: persona types, utility traction, retention by feature, drop-off points, power user patterns. This gives us both product signal and consumer insight at scale.</p>
 
-<p><strong>Win condition:</strong> daily return for 30+ days. If we crack that, monetisation follows — microtransactions, subscriptions, embedded product distribution.</p>
+<p><strong>Primary focus: retention.</strong> We don't have a specific number target yet, but retention is the north star. If we can get users coming back consistently because the companion is both emotionally present and practically useful — that's the win. Monetisation follows from there.</p>
 
 <p><strong>Kill condition:</strong> can't crack retention even with utility on top of companionship. We sunset it.</p>
 
 <h2>Why this could be big</h2>
 
-<p>Not another chatbot. A utilitarian companion — understands you, knows your context, helps you daily. Emotional layer makes it sticky. Utility layer makes it indispensable. Built for India first: Hinglish, voice-first, ₹50–100 pricing, Tier 2/3 users. Largest underserved market in the world for this.</p>
-
-<p>Nail India → Southeast Asia, Middle East, Africa → different form factor for US.</p>
+<p>Not another chatbot. A utilitarian companion — understands you, knows your context, helps you daily. Emotional layer makes it sticky. Utility layer makes it indispensable. Built for India first: Hinglish, ₹50–100 pricing, Tier 2/3 users.</p>
 
 <div class="note">
 Internal note — Zonko Applied AI Lab, March 2026<br>
